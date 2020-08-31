@@ -19,7 +19,7 @@ export interface Config {
   verbose?: boolean;
   useTypescript?: boolean;
   ignore?: string[];
-  plugins: { devApp?: Plugin[]; devDeps?: Plugin[]; production?: Plugin[] };
+  plugins?: { devApp?: Plugin[]; devDeps?: Plugin[]; production?: Plugin[] };
 }
 
 export const DefaultDevAppPlugins = (
@@ -102,7 +102,12 @@ export class AppCommand extends Command {
           outputDirectory: userConfig.outputDirectory,
           plugins: userConfig.plugins.devApp as Plugin[],
         });
-      } else this.startProductionBuild();
+      } else
+        this.startProductionBuild({
+          input: userConfig.input,
+          outputDirectory: userConfig.outputDirectory,
+          plugins: userConfig.plugins.production as Plugin[],
+        });
     } catch (err) {
       handleError(err);
     }
@@ -163,10 +168,10 @@ export class AppCommand extends Command {
       verbose: this.verbose ?? configFromFile.verbose,
       plugins: {
         devApp:
-          configFromFile.plugins.devApp ??
+          configFromFile.plugins?.devApp ??
           DefaultDevAppPlugins(this.useTypescript),
-        devDeps: configFromFile.plugins.devDeps ?? DefaultDevDepsPlugins,
-        production: configFromFile.plugins.production ?? DefaultProdPlugins,
+        devDeps: configFromFile.plugins?.devDeps ?? DefaultDevDepsPlugins,
+        production: configFromFile.plugins?.production ?? DefaultProdPlugins,
       },
     };
 
@@ -230,6 +235,14 @@ export class AppCommand extends Command {
     });
   }
 
+  /**
+   * Start watch mode
+   * @param options - Options
+   * @param options.input - Entry point
+   * @param options.dependenciesMap - Map of dependencies to their url
+   * @param options.outputDirectory - Output directory
+   * @param options.plugins - Plugins to be used
+   */
   private startWatchMode({
     input,
     dependenciesMap,
@@ -273,5 +286,32 @@ export class AppCommand extends Command {
     });
   }
 
-  private async startProductionBuild() {}
+  /**
+   * Start production build
+   * @param options - Options
+   * @param options.input - Entry point
+   * @param options.outputDirectory - Output directory
+   * @param options.plugins - Plugins to be used
+   */
+  private async startProductionBuild({
+    input,
+    outputDirectory,
+    plugins,
+  }: {
+    input: string;
+    outputDirectory: string;
+    plugins: Plugin[];
+  }) {
+    const bundle = await rollup({
+      input,
+      context: "window",
+      plugins,
+    });
+
+    await bundle.write({
+      dir: outputDirectory,
+      format: "es",
+      sourcemap: true,
+    });
+  }
 }
