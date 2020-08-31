@@ -1,5 +1,5 @@
 {
-  "name": "v",
+  "name": "yakshaving",
   "version": "0.0.1",
   "description": "Wrapper around rollup",
   "bin": "./dist/index.js",
