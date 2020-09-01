@@ -2,8 +2,9 @@
   "name": "yakshaving",
   "version": "0.0.1",
   "description": "Wrapper around rollup",
-  "bin": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "bin": "./dist/cli/index.js",
+  "main": "./dist/lib/index.js",
+  "types": "./dist/lib/index.d.ts",
   "files": [
     "./dist"
   ],
