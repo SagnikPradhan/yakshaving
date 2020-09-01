@@ -8,6 +8,9 @@
   "files": [
     "./dist"
   ],
+  "scripts": {
+    "docs": "yarn typedoc docs source/lib/index.ts --mode file"
+  },
   "dependencies": {
     "@rollup/plugin-commonjs": "^15.0.0",
     "@rollup/plugin-node-resolve": "^9.0.0",
@@ -22,6 +25,7 @@
   },
   "devDependencies": {
     "@types/node": "^14.6.1",
+    "typedoc": "^0.19.0",
     "typescript": "^4.0.2"
   }
 }

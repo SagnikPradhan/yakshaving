@@ -1,17 +1,10 @@
-import type { Plugin } from "rollup";
-
-import CommonJSPlugin from "@rollup/plugin-commonjs";
-import { nodeResolve as NodeResolvePlugin } from "@rollup/plugin-node-resolve";
-// @ts-expect-error No types for sucrase plugin
-import SucrasePlugin from "@rollup/plugin-sucrase";
-
-export const defaultAppPlugins: Plugin[] = [
-  CommonJSPlugin(),
-  NodeResolvePlugin({
-    extensions: [".mjs", ".js", ".json", ".node", ".ts", ".tsx", ".jsx"],
-    preferBuiltins: false,
-  }),
-  SucrasePlugin({ transforms: ["typescript", "jsx"] }),
-];
+import { Plugin } from "rollup";
 
 export * from "./development";
+
+export interface Config {
+  input?: string;
+  outputDirectory?: string;
+  ignore?: string[];
+  plugins?: { development: Plugin[]; production: Plugin[] };
+}

@@ -1,8 +1,8 @@
-import "source-map-support/register"
+import "source-map-support/register";
 
 import { BaseContext, Cli as CLI, Command } from "clipanion";
-import { AppCommand } from "../command";
-import { handleError } from "../utils";
+import { AppCommand } from "./command";
+import { handleError } from "../lib/utils";
 
 export interface CLIContext extends BaseContext {}
 
