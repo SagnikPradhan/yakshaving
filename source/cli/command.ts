@@ -5,7 +5,7 @@ import fs from "fs";
 import module from "module";
 
 import { LibraryError } from "../lib/utils";
-import { Config } from "../lib";
+import { Config, startDevelopmentMode } from "../lib";
 
 export class AppCommand extends Command {
   @Command.String({ required: false })
@@ -15,7 +15,7 @@ export class AppCommand extends Command {
   public outputDirectory?: string;
 
   @Command.String("--config,-c")
-  public configPath = "v.config.js";
+  public configPath?: string;
 
   @Command.String("--tsconfig")
   public tsconfigPath = "tsconfig.json";
@@ -31,8 +31,23 @@ export class AppCommand extends Command {
 
   @Command.Path()
   async execute(): Promise<number> {
-    const userManifest = await this.parseUserManifest();
-    this.getConfig(userManifest.path.dir);
+    const userManifest = await this.parseUserManifest<{
+      dependencies: Record<string, string>;
+    }>();
+    const userConfig = await this.getConfig(userManifest.path.dir);
+
+    const userRoot = (...args: string[]) =>
+      path.join(userManifest.path.dir, ...args);
+
+    if (this.devMode)
+      startDevelopmentMode({
+        entryPoint: userRoot(userConfig.input),
+        outputDirectory: userRoot(userConfig.outputDirectory),
+        dependencies: Object.keys(userManifest.content.dependencies),
+        userRequire: userManifest.require,
+        appRollupOptions: {},
+        pluginsForApp: userConfig.plugins.development,
+      });
 
     // TODO: Actually start building
     return 0;
@@ -67,12 +82,12 @@ export class AppCommand extends Command {
    */
   private async getConfig(userRoot: string): Promise<Required<Config>> {
     // Load users config file if any
-    const configPath = path.resolve(userRoot, this.configPath);
-    const { input, ignore, outputDirectory, plugins }: Config = fs.existsSync(
-      configPath
-    )
-      ? await import(configPath)
-      : {};
+    const {
+      input,
+      ignore,
+      outputDirectory,
+      plugins,
+    }: Config = await this.readUserConfig(userRoot);
 
     // Combine CLI arguments and config
     const config: Config = {
@@ -93,6 +108,26 @@ export class AppCommand extends Command {
     }
 
     return config as Required<Config>;
+  }
+
+  /**
+   * Read user configuration and throw if invalid path
+   * @param userRoot - Users root directory
+   */
+  private readUserConfig(userRoot: string): Promise<Config> | {} {
+    if (this.configPath === undefined) return {};
+
+    const configPath = path.isAbsolute(this.configPath)
+      ? this.configPath
+      : path.resolve(userRoot, this.configPath);
+
+    if (fs.existsSync(configPath)) return import(configPath);
+    else
+      throw new LibraryError("Invalid config path", {
+        isOperational: false,
+        description: "Configuration file does not exist in the specified path",
+        configPath,
+      });
   }
 
   /**

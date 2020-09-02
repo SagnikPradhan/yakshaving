@@ -1,7 +1,6 @@
 import type {
   OutputOptions,
   Plugin,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   rollup,
   RollupOptions,
   RollupOutput,

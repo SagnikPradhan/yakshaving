@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import type { rollup } from "rollup";
 import type CommonJSPlugin from "@rollup/plugin-commonjs";
 import type { nodeResolve as NodeResolvePlugin } from "@rollup/plugin-node-resolve";
