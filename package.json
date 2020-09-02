@@ -9,22 +9,34 @@
     "./dist"
   ],
   "scripts": {
-    "docs": "yarn typedoc docs source/lib/index.ts --mode file"
+    "docs": "typedoc docs source/lib/index.ts --mode file",
+    "build": "tsc",
+    "watch": "tsc -w",
+    "format": "prettier --write source/**/*",
+    "check": "eslint --ext tsc source"
   },
   "dependencies": {
+    "clipanion": "^2.5.0",
+    "colorette": "^1.2.1",
+    "rollup": "^2.26.9",
+    "source-map-support": "^0.5.19"
+  },
+  "optionalDependencies": {
     "@rollup/plugin-commonjs": "^15.0.0",
     "@rollup/plugin-node-resolve": "^9.0.0",
     "@rollup/plugin-replace": "^2.3.3",
     "@rollup/plugin-sucrase": "^3.1.0",
     "@rollup/plugin-typescript": "^5.0.2",
-    "clipanion": "^2.5.0",
-    "colorette": "^1.2.1",
-    "rollup": "^2.26.6",
-    "source-map-support": "^0.5.19",
-    "tslib": "^2.0.1"
+    "rollup-plugin-terser": "^7.0.1"
   },
   "devDependencies": {
     "@types/node": "^14.6.1",
+    "@typescript-eslint/eslint-plugin": "latest",
+    "@typescript-eslint/parser": "latest",
+    "eslint": "^7.8.1",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "prettier": "^2.1.1",
     "typedoc": "^0.19.0",
     "typescript": "^4.0.2"
   }

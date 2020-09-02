@@ -1,4 +1,11 @@
-import type { OutputOptions, Plugin, rollup, RollupOptions } from "rollup";
+import type {
+  OutputOptions,
+  Plugin,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  rollup,
+  RollupOptions,
+  RollupOutput,
+} from "rollup";
 
 export interface ProductionBuildOptions {
   rollup: typeof rollup;
@@ -19,7 +26,7 @@ export async function createProductionBuild({
   plugins,
   outputDirectory,
   rollupOptions,
-}: ProductionBuildOptions) {
+}: ProductionBuildOptions): Promise<RollupOutput> {
   const bundle = await rollup(
     Object.assign(
       {

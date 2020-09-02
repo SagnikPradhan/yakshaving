@@ -1,10 +1,8 @@
 import "source-map-support/register";
 
-import { BaseContext, Cli as CLI, Command } from "clipanion";
+import { Cli as CLI, Command } from "clipanion";
 import { AppCommand } from "./command";
 import { handleError } from "../lib/utils";
-
-export interface CLIContext extends BaseContext {}
 
 async function initialiseCLI() {
   const cli = new CLI({

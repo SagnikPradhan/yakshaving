@@ -37,7 +37,7 @@ export class LibraryError extends Error {
  * Handle errors. Exits if error is unknown or non operational
  * @param error - Error
  */
-export function handleError(error: Error) {
+export function handleError(error: Error): void {
   console.error(error);
 
   if (error instanceof LibraryError && error.isOperational) return;

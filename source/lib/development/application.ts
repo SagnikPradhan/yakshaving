@@ -1,4 +1,5 @@
-import type { Plugin, RollupWatchOptions, watch } from "rollup";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import type { Plugin, RollupWatchOptions, RollupWatcher, watch } from "rollup";
 
 export interface ApplicationWatchModeOptions {
   watch: typeof watch;
@@ -16,14 +17,14 @@ export interface ApplicationWatchModeOptions {
  * @param options - Application watch mode options
  * @returns Rollup watcher
  */
-export async function startApplicationWatchMode({
+export function startApplicationWatchMode({
   watch,
   entryPoint,
   plugins,
   dependencyMap,
   outputDirectory,
   rollupOptions,
-}: ApplicationWatchModeOptions) {
+}: ApplicationWatchModeOptions): RollupWatcher {
   return watch(
     Object.assign(
       {

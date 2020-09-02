@@ -15,10 +15,10 @@ export class AppCommand extends Command {
   public outputDirectory?: string;
 
   @Command.String("--config,-c")
-  public configPath: string = "v.config.js";
+  public configPath = "v.config.js";
 
   @Command.String("--tsconfig")
-  public tsconfigPath: string = "tsconfig.json";
+  public tsconfigPath = "tsconfig.json";
 
   @Command.Boolean("--verbose")
   public verbose = false;
@@ -30,14 +30,12 @@ export class AppCommand extends Command {
   public ignore: string[] = [];
 
   @Command.Path()
-  async execute() {
-    const { userRoot } = await this.parseUserManifest();
-    const config = this.getConfig(
-      userRoot(this.configPath),
-      userRoot(this.tsconfigPath)
-    );
+  async execute(): Promise<number> {
+    const userManifest = await this.parseUserManifest();
+    this.getConfig(userManifest.path.dir);
 
     // TODO: Actually start building
+    return 0;
   }
 
   /**
@@ -60,30 +58,31 @@ export class AppCommand extends Command {
       path: parsedPackageJsonPath,
       content: packageJson,
       require: module.createRequire(parsedPackageJsonPath.dir),
-      userRoot: (...args: string[]) =>
-        path.resolve(parsedPackageJsonPath.dir, ...args),
     };
   }
 
   /**
    * Get configuration, validate it and fill in the default values if any
-   * @param path - Config file's path relative to user root
-   * @param tsconfigPath - Path to `tsconfig.json` relative to user root
+   * @param userRoot - Users root directory
    */
-  private async getConfig(
-    path?: string,
-    tsconfigPath?: string
-  ): Promise<Required<Config>> {
-    const { input, ignore, outputDirectory, plugins }: Config =
-      path && fs.existsSync(path) ? await import(path) : {};
+  private async getConfig(userRoot: string): Promise<Required<Config>> {
+    // Load users config file if any
+    const configPath = path.resolve(userRoot, this.configPath);
+    const { input, ignore, outputDirectory, plugins }: Config = fs.existsSync(
+      configPath
+    )
+      ? await import(configPath)
+      : {};
 
+    // Combine CLI arguments and config
     const config: Config = {
-      input: input ?? this.input,
-      ignore: ignore ?? this.ignore,
-      outputDirectory: outputDirectory ?? this.outputDirectory,
-      plugins: plugins ?? (await this.defaultPlugins(tsconfigPath)),
+      input: this.input ?? input,
+      ignore: this.ignore ?? ignore,
+      outputDirectory: this.outputDirectory ?? outputDirectory,
+      plugins: plugins ?? (await this.defaultPlugins(userRoot)),
     };
 
+    // Validate config
     for (const [key, value] of Object.entries(config)) {
       if (value === undefined)
         throw new LibraryError(`Found "${key}" undefined in configuration`, {
@@ -98,14 +97,12 @@ export class AppCommand extends Command {
 
   /**
    * Get default plugins
-   * @param tsconfigPath - Path to `tsconfig.json` relative to user root
+   * @param userRoot - Users root directory
    */
-  private async defaultPlugins(
-    tsconfigPath?: string
-  ): Promise<Config["plugins"]> {
-    const CommonJSPlugin = (await import("@rollup/plugin-commonjs")).default();
+  private async defaultPlugins(userRoot: string): Promise<Config["plugins"]> {
+    const pluginCommonJS = (await import("@rollup/plugin-commonjs")).default();
 
-    const NodeResolvePlugin = (
+    const pluginNodeResolve = (
       await import("@rollup/plugin-node-resolve")
     ).default({
       preferBuiltins: false,
@@ -113,28 +110,30 @@ export class AppCommand extends Command {
     });
 
     // @ts-expect-error Sucrase lacks types
-    const SucrasePlugin = (await import("@rollup/plugin-sucrase")).default();
+    const pluginSucrase = (await import("@rollup/plugin-sucrase")).default();
 
-    const TypescriptPlugin = (
+    const tsconfigPath = path.resolve(userRoot, this.tsconfigPath);
+    const pluginTypescript = (
       await import("@rollup/plugin-typescript")
     ).default({
-      tsconfig: fs.existsSync(tsconfigPath as string)
-        ? tsconfigPath
-        : undefined,
+      tsconfig: fs.existsSync(tsconfigPath) ? tsconfigPath : undefined,
     });
 
-    const ReplacePlugin = (await import("@rollup/plugin-replace")).default({
+    const pluginReplace = (await import("@rollup/plugin-replace")).default({
       values: { "process.env.NODE_ENV": '"production"' },
     });
 
+    const pluginTerser = (await import("rollup-plugin-terser")).terser();
+
     return {
       production: [
-        CommonJSPlugin,
-        NodeResolvePlugin,
-        ReplacePlugin,
-        TypescriptPlugin,
+        pluginCommonJS,
+        pluginNodeResolve,
+        pluginReplace,
+        pluginTypescript,
+        pluginTerser,
       ],
-      development: [CommonJSPlugin, NodeResolvePlugin, SucrasePlugin],
+      development: [pluginCommonJS, pluginNodeResolve, pluginSucrase],
     };
   }
 }
