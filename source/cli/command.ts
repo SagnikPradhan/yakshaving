@@ -72,7 +72,7 @@ export class AppCommand extends Command {
     return {
       path: parsedPackageJsonPath,
       content: packageJson,
-      require: module.createRequire(parsedPackageJsonPath.dir),
+      require: module.createRequire(packageJsonPath),
     };
   }
 
@@ -145,7 +145,9 @@ export class AppCommand extends Command {
     });
 
     // @ts-expect-error Sucrase lacks types
-    const pluginSucrase = (await import("@rollup/plugin-sucrase")).default();
+    const pluginSucrase = (await import("@rollup/plugin-sucrase")).default({
+      transforms: ["typescript", "jsx"],
+    });
 
     const tsconfigPath = path.resolve(userRoot, this.tsconfigPath);
     const pluginTypescript = (
