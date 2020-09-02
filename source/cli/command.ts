@@ -1,11 +1,12 @@
 import { Command } from "clipanion";
+import { rollup } from "rollup";
 
 import path from "path";
 import fs from "fs";
 import module from "module";
 
 import { LibraryError } from "../lib/utils";
-import { Config, startDevelopmentMode } from "../lib";
+import { Config, startDevelopmentMode, createProductionBuild } from "../lib";
 
 export class AppCommand extends Command {
   @Command.String({ required: false })
@@ -39,14 +40,25 @@ export class AppCommand extends Command {
     const userRoot = (...args: string[]) =>
       path.join(userManifest.path.dir, ...args);
 
+    const entryPoint = userRoot(userConfig.input);
+    const outputDirectory = userRoot(userConfig.outputDirectory);
+
     if (this.devMode)
-      startDevelopmentMode({
-        entryPoint: userRoot(userConfig.input),
-        outputDirectory: userRoot(userConfig.outputDirectory),
+      await startDevelopmentMode({
+        entryPoint,
+        outputDirectory,
         dependencies: Object.keys(userManifest.content.dependencies),
         userRequire: userManifest.require,
         appRollupOptions: {},
         pluginsForApp: userConfig.plugins.development,
+      });
+    else
+      await createProductionBuild({
+        rollup,
+        entryPoint,
+        outputDirectory,
+        rollupOptions: { input: {}, output: {} },
+        plugins: userConfig.plugins.production,
       });
 
     // TODO: Actually start building

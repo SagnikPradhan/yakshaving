@@ -1,6 +1,7 @@
 import { Plugin } from "rollup";
 
 export * from "./development";
+export * from "./production";
 
 export interface Config {
   input?: string;
