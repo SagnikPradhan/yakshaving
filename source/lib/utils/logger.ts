@@ -25,8 +25,8 @@ export class Logger {
       }
     } else process.stdout.write(`[${c.gray(this.origin)}] `);
 
-    if (typeof message === "string") console.log(message);
     if (message instanceof Error) console.error(message);
-    if (typeof message === "object") console.dir(message);
+    else if (typeof message === "object") console.dir(message);
+    else console.log(message);
   }
 }

@@ -67,6 +67,12 @@
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
+						<section class="tsd-index-section tsd-is-external">
+							<h3>Classes</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-class tsd-is-external"><a href="classes/logger.html" class="tsd-kind-icon">Logger</a></li>
+							</ul>
+						</section>
 						<section class="tsd-index-section ">
 							<h3>Interfaces</h3>
 							<ul class="tsd-index-list">
@@ -74,12 +80,14 @@
 								<li class="tsd-kind-interface"><a href="interfaces/config.html" class="tsd-kind-icon">Config</a></li>
 								<li class="tsd-kind-interface tsd-is-external"><a href="interfaces/dependenciesbundlecreationoptions.html" class="tsd-kind-icon">Dependencies<wbr>Bundle<wbr>Creation<wbr>Options</a></li>
 								<li class="tsd-kind-interface tsd-is-external"><a href="interfaces/developmentmodeoptions.html" class="tsd-kind-icon">Development<wbr>Mode<wbr>Options</a></li>
+								<li class="tsd-kind-interface tsd-is-external"><a href="interfaces/productionbuildoptions.html" class="tsd-kind-icon">Production<wbr>Build<wbr>Options</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section tsd-is-external">
 							<h3>Functions</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-function tsd-is-external"><a href="globals.html#createdependenciesbundle" class="tsd-kind-icon">create<wbr>Dependencies<wbr>Bundle</a></li>
+								<li class="tsd-kind-function tsd-is-external"><a href="globals.html#createproductionbuild" class="tsd-kind-icon">create<wbr>Production<wbr>Build</a></li>
 								<li class="tsd-kind-function tsd-is-external"><a href="globals.html#startapplicationwatchmode" class="tsd-kind-icon">start<wbr>Application<wbr>Watch<wbr>Mode</a></li>
 								<li class="tsd-kind-function tsd-is-external"><a href="globals.html#startdevelopmentmode" class="tsd-kind-icon">start<wbr>Development<wbr>Mode</a></li>
 							</ul>
@@ -99,7 +107,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SagnikPradhan/yakshaving/blob/9060b20/source/lib/development/dependencies.ts#L25">development/dependencies.ts:25</a></li>
+									<li>Defined in <a href="https://github.com/SagnikPradhan/yakshaving/blob/9776f1c/source/lib/development/dependencies.ts#L27">development/dependencies.ts:27</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -136,16 +144,69 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-is-external">
-					<a name="startapplicationwatchmode" class="tsd-anchor"></a>
-					<h3>start<wbr>Application<wbr>Watch<wbr>Mode</h3>
+					<a name="createproductionbuild" class="tsd-anchor"></a>
+					<h3>create<wbr>Production<wbr>Build</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">start<wbr>Application<wbr>Watch<wbr>Mode<span class="tsd-signature-symbol">(</span>__namedParameters<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>dependencyMap<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">; </span>entryPoint<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>outputDirectory<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>plugins<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Plugin</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">; </span>rollupOptions<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">RollupWatchOptions</span><span class="tsd-signature-symbol">; </span>watch<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">watch</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RollupWatcher</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">create<wbr>Production<wbr>Build<span class="tsd-signature-symbol">(</span>__namedParameters<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>entryPoint<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>outputDirectory<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>plugins<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Plugin</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">; </span>rollup<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">rollup</span><span class="tsd-signature-symbol">; </span>rollupOptions<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>input<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">RollupOptions</span><span class="tsd-signature-symbol">; </span>output<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">OutputOptions</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SagnikPradhan/yakshaving/blob/9060b20/source/lib/development/application.ts#L19">development/application.ts:19</a></li>
+									<li>Defined in <a href="https://github.com/SagnikPradhan/yakshaving/blob/9776f1c/source/lib/production.ts#L23">production.ts:23</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Create production bundle or build</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>__namedParameters: <span class="tsd-signature-symbol">{ </span>entryPoint<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>outputDirectory<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>plugins<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Plugin</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">; </span>rollup<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">rollup</span><span class="tsd-signature-symbol">; </span>rollupOptions<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>input<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">RollupOptions</span><span class="tsd-signature-symbol">; </span>output<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">OutputOptions</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol"> }</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter">
+											<h5>entry<wbr>Point<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+										</li>
+										<li class="tsd-parameter">
+											<h5>output<wbr>Directory<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+										</li>
+										<li class="tsd-parameter">
+											<h5>plugins<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Plugin</span><span class="tsd-signature-symbol">[]</span></h5>
+										</li>
+										<li class="tsd-parameter">
+											<h5>rollup<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">rollup</span></h5>
+										</li>
+										<li class="tsd-parameter">
+											<h5>rollup<wbr>Options<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>input<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">RollupOptions</span><span class="tsd-signature-symbol">; </span>output<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">OutputOptions</span><span class="tsd-signature-symbol"> }</span></h5>
+											<ul class="tsd-parameters">
+												<li class="tsd-parameter">
+													<h5>input<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">RollupOptions</span></h5>
+												</li>
+												<li class="tsd-parameter">
+													<h5>output<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">OutputOptions</span></h5>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-is-external">
+					<a name="startapplicationwatchmode" class="tsd-anchor"></a>
+					<h3>start<wbr>Application<wbr>Watch<wbr>Mode</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">start<wbr>Application<wbr>Watch<wbr>Mode<span class="tsd-signature-symbol">(</span>__namedParameters<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>dependencyMap<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">; </span>entryPoint<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>outputDirectory<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>plugins<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Plugin</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">; </span>rollupOptions<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">RollupWatchOptions</span><span class="tsd-signature-symbol">; </span>watch<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">watch</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/SagnikPradhan/yakshaving/blob/9776f1c/source/lib/development/application.ts#L21">development/application.ts:21</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -179,7 +240,7 @@
 									</ul>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RollupWatcher</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 							<p>Rollup watcher</p>
 						</li>
 					</ul>
@@ -194,7 +255,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SagnikPradhan/yakshaving/blob/9060b20/source/lib/development/index.ts#L28">development/index.ts:28</a></li>
+									<li>Defined in <a href="https://github.com/SagnikPradhan/yakshaving/blob/9776f1c/source/lib/development/index.ts#L26">development/index.ts:26</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -246,6 +307,9 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-class tsd-is-external">
+						<a href="classes/logger.html" class="tsd-kind-icon">Logger</a>
+					</li>
 					<li class=" tsd-kind-interface tsd-is-external">
 						<a href="interfaces/applicationwatchmodeoptions.html" class="tsd-kind-icon">Application<wbr>Watch<wbr>Mode<wbr>Options</a>
 					</li>
@@ -258,8 +322,14 @@
 					<li class=" tsd-kind-interface tsd-is-external">
 						<a href="interfaces/developmentmodeoptions.html" class="tsd-kind-icon">Development<wbr>Mode<wbr>Options</a>
 					</li>
+					<li class=" tsd-kind-interface tsd-is-external">
+						<a href="interfaces/productionbuildoptions.html" class="tsd-kind-icon">Production<wbr>Build<wbr>Options</a>
+					</li>
 					<li class=" tsd-kind-function tsd-is-external">
 						<a href="globals.html#createdependenciesbundle" class="tsd-kind-icon">create<wbr>Dependencies<wbr>Bundle</a>
+					</li>
+					<li class=" tsd-kind-function tsd-is-external">
+						<a href="globals.html#createproductionbuild" class="tsd-kind-icon">create<wbr>Production<wbr>Build</a>
 					</li>
 					<li class=" tsd-kind-function tsd-is-external">
 						<a href="globals.html#startapplicationwatchmode" class="tsd-kind-icon">start<wbr>Application<wbr>Watch<wbr>Mode</a>

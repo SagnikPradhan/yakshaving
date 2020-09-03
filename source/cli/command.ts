@@ -5,8 +5,8 @@ import path from "path";
 import fs from "fs";
 import module from "module";
 
-import { LibraryError } from "../lib/utils/error";
-import {Logger} from "../lib/utils/logger"
+import { handleError, LibraryError } from "../lib/utils/error";
+import { Logger } from "../lib/utils/logger";
 import { Config, startDevelopmentMode, createProductionBuild } from "../lib";
 
 export class AppCommand extends Command {
@@ -29,43 +29,45 @@ export class AppCommand extends Command {
   public ignore: string[] = [];
 
   @Command.Path()
-  async execute(): Promise<number> {
-    const console = new Logger("Root")
-    console.log("Starting Up!")
+  async execute(): Promise<void> {
+    const console = new Logger("Root");
+    console.log("Starting Up!");
 
-    const userManifest = await this.parseUserManifest<{
-      dependencies: Record<string, string>;
-    }>();
-    console.log(`Found package.json at ${userManifest.path.dir}`)
+    try {
+      const userManifest = await this.parseUserManifest<{
+        dependencies: Record<string, string>;
+      }>();
+      console.log(`Found package.json at ${userManifest.path.dir}`);
 
-    const userConfig = await this.getConfig(userManifest.path.dir);
-    console.log(userConfig)
+      const userConfig = await this.getConfig(userManifest.path.dir);
+      console.log(userConfig);
 
-    const userRoot = (...args: string[]) =>
-      path.join(userManifest.path.dir, ...args);
+      const userRoot = (...args: string[]) =>
+        path.join(userManifest.path.dir, ...args);
 
-    const entryPoint = userRoot(userConfig.input);
-    const outputDirectory = userRoot(userConfig.outputDirectory);
+      const entryPoint = userRoot(userConfig.input);
+      const outputDirectory = userRoot(userConfig.outputDirectory);
 
-    if (this.devMode)
-      await startDevelopmentMode({
-        entryPoint,
-        outputDirectory,
-        dependencies: Object.keys(userManifest.content.dependencies),
-        userRequire: userManifest.require,
-        appRollupOptions: {},
-        pluginsForApp: userConfig.plugins.development,
-      });
-    else
-      await createProductionBuild({
-        rollup,
-        entryPoint,
-        outputDirectory,
-        rollupOptions: { input: {}, output: {} },
-        plugins: userConfig.plugins.production,
-      });
-
-    return 0;
+      if (this.devMode)
+        await startDevelopmentMode({
+          entryPoint,
+          outputDirectory,
+          dependencies: Object.keys(userManifest.content.dependencies),
+          userRequire: userManifest.require,
+          appRollupOptions: {},
+          pluginsForApp: userConfig.plugins.development,
+        });
+      else
+        await createProductionBuild({
+          rollup,
+          entryPoint,
+          outputDirectory,
+          rollupOptions: { input: {}, output: {} },
+          plugins: userConfig.plugins.production,
+        });
+    } catch (err) {
+      handleError(err, console);
+    }
   }
 
   /**
