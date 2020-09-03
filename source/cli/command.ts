@@ -5,7 +5,8 @@ import path from "path";
 import fs from "fs";
 import module from "module";
 
-import { LibraryError } from "../lib/utils";
+import { LibraryError } from "../lib/utils/error";
+import {Logger} from "../lib/utils/logger"
 import { Config, startDevelopmentMode, createProductionBuild } from "../lib";
 
 export class AppCommand extends Command {
@@ -21,9 +22,6 @@ export class AppCommand extends Command {
   @Command.String("--tsconfig")
   public tsconfigPath = "tsconfig.json";
 
-  @Command.Boolean("--verbose")
-  public verbose = false;
-
   @Command.Boolean("--dev,-d")
   public devMode = false;
 
@@ -32,10 +30,16 @@ export class AppCommand extends Command {
 
   @Command.Path()
   async execute(): Promise<number> {
+    const console = new Logger("Root")
+    console.log("Starting Up!")
+
     const userManifest = await this.parseUserManifest<{
       dependencies: Record<string, string>;
     }>();
+    console.log(`Found package.json at ${userManifest.path.dir}`)
+
     const userConfig = await this.getConfig(userManifest.path.dir);
+    console.log(userConfig)
 
     const userRoot = (...args: string[]) =>
       path.join(userManifest.path.dir, ...args);
@@ -61,7 +65,6 @@ export class AppCommand extends Command {
         plugins: userConfig.plugins.production,
       });
 
-    // TODO: Actually start building
     return 0;
   }
 

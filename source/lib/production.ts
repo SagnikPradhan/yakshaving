@@ -2,9 +2,10 @@ import type {
   OutputOptions,
   Plugin,
   rollup,
-  RollupOptions,
-  RollupOutput,
+  RollupOptions
 } from "rollup";
+
+import { Logger } from "./utils/logger";
 
 export interface ProductionBuildOptions {
   rollup: typeof rollup;
@@ -25,7 +26,12 @@ export async function createProductionBuild({
   plugins,
   outputDirectory,
   rollupOptions,
-}: ProductionBuildOptions): Promise<RollupOutput> {
+}: ProductionBuildOptions): Promise<void> {
+  const console = new Logger("Production Build");
+
+  console.log("Started", "PROCESS");
+  console.log("Started building", "BUILD");
+
   const bundle = await rollup(
     Object.assign(
       {
@@ -37,7 +43,10 @@ export async function createProductionBuild({
     )
   );
 
-  return bundle.write(
+  console.log("Build completed", "BUILD");
+  console.log("Writing to disk", "WRITE");
+
+  bundle.write(
     Object.assign(
       {
         dir: outputDirectory,
@@ -47,4 +56,7 @@ export async function createProductionBuild({
       rollupOptions.output
     )
   );
+
+  console.log("Wrote to disk", "WRITE");
+  console.log("Bundle created", "PROCESS");
 }

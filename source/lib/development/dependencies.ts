@@ -5,6 +5,8 @@ import type ReplacePlugin from "@rollup/plugin-replace";
 
 import path from "path";
 
+import { Logger } from "../utils/logger";
+
 export interface DependenciesBundleCreationOptions {
   rollup: typeof rollup;
   dependencies: string[];
@@ -29,12 +31,18 @@ export async function createDependenciesBundle({
   pluginFactories,
   outputDirectory,
 }: DependenciesBundleCreationOptions): Promise<Record<string, string>> {
+  const console = new Logger("Dependencies Bundle");
+  console.log("Started", "PROCESS");
+
   const [commonJSPlugin, nodeResolvePlugin, replacePlugin] = pluginFactories;
 
   const entryPoints: Record<string, string> = {};
 
   for (const dependency of dependencies)
     entryPoints[dependency] = userRequire.resolve(dependency);
+
+  console.log(`Found ${Object.keys(entryPoints).length} dependencies`);
+  console.log(`Started building`, "BUILD");
 
   const bundle = await rollup({
     input: entryPoints,
@@ -46,6 +54,9 @@ export async function createDependenciesBundle({
     ],
   });
 
+  console.log("Building done", "BUILD");
+  console.log("Started writing to disk", "WRITE");
+
   await bundle.write({
     dir: path.join(outputDirectory, "dependencies"),
     format: "es",
@@ -54,9 +65,13 @@ export async function createDependenciesBundle({
     exports: "named",
   });
 
+  console.log("Wrote to the disk", "WRITE");
+
   const dependencyMap = Object.fromEntries(
     dependencies.map((d) => [d, `./dependencies/${d}.js`])
   );
+
+  console.log("Dependency bundle created", "PROCESS");
 
   return dependencyMap;
 }

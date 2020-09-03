@@ -2,7 +2,7 @@ import "source-map-support/register";
 
 import { Cli as CLI, Command } from "clipanion";
 import { AppCommand } from "./command";
-import { handleError } from "../lib/utils";
+import { handleError } from "../lib/utils/error";
 
 async function initialiseCLI() {
   const cli = new CLI({

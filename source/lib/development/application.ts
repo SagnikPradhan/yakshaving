@@ -1,4 +1,6 @@
-import type { Plugin, RollupWatchOptions, RollupWatcher, watch } from "rollup";
+import type { Plugin, RollupWatchOptions, watch } from "rollup";
+
+import { Logger } from "../utils/logger";
 
 export interface ApplicationWatchModeOptions {
   watch: typeof watch;
@@ -23,8 +25,10 @@ export function startApplicationWatchMode({
   dependencyMap,
   outputDirectory,
   rollupOptions,
-}: ApplicationWatchModeOptions): RollupWatcher {
-  return watch(
+}: ApplicationWatchModeOptions): void {
+  const console = new Logger("Application Bundle");
+
+  const watcher = watch(
     Object.assign(
       {
         input: entryPoint,
@@ -46,4 +50,17 @@ export function startApplicationWatchMode({
       rollupOptions
     )
   );
+
+  watcher.on("event", (event) => {
+    const code = event.code;
+
+    switch (code) {
+      case "BUNDLE_START":
+        console.log("Build started", "BUILD");
+        break;
+
+      case "BUNDLE_END":
+        console.log("Build completed", "BUILD");
+    }
+  });
 }

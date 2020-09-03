@@ -40,7 +40,7 @@ export async function startDevelopmentMode({
     userRequire,
   });
 
-  const watcher = await startApplicationWatchMode({
+  await startApplicationWatchMode({
     watch,
     dependencyMap,
     entryPoint,
@@ -48,8 +48,6 @@ export async function startDevelopmentMode({
     plugins: pluginsForApp,
     rollupOptions: appRollupOptions,
   });
-
-  watcher.on("event", console.log);
 }
 
 export * from "./dependencies";
