@@ -1,4 +1,7 @@
-import type { Plugin, RollupWatchOptions, watch } from "rollup";
+import type { Plugin, RollupError, RollupWatchOptions, watch } from "rollup";
+
+import path from "path";
+import c from "colorette";
 
 import { Logger } from "../utils/logger";
 
@@ -56,11 +59,33 @@ export function startApplicationWatchMode({
 
     switch (code) {
       case "BUNDLE_START":
-        console.log("Build started", "BUILD");
+        console.log("Build started");
         break;
 
       case "BUNDLE_END":
-        console.log("Build completed", "BUILD");
+        const { duration, input, output } = event as {
+          code: string;
+          duration: number;
+          input: string;
+          output: string[];
+        };
+
+        const cwd = process.cwd();
+        const inputRelative = c.gray(path.relative(cwd, input));
+        const outputRelative = c.gray(
+          output.map((p) => path.relative(cwd, p)).join(", ")
+        );
+
+        console.log(
+          `${c.green(
+            duration + "ms"
+          )} Build completed. ${inputRelative} -> ${outputRelative}`
+        );
+        break;
+
+      case "ERROR":
+        console.log((event as { code: string; error: RollupError }).error);
+        break;
     }
   });
 }
