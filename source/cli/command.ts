@@ -119,7 +119,7 @@ export class AppCommand extends Command {
       plugins:
         plugins ??
         (await defaultPlugins({
-          tsconfig: path.resolve(userRoot, this.tsconfigPath),
+          typescript: { tsconfig: path.resolve(userRoot, this.tsconfigPath) },
         })),
     };
 

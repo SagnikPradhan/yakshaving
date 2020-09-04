@@ -118,4 +118,4 @@ out
 .vscode
 
 # Non required build files
-example/public/dist
+dist
