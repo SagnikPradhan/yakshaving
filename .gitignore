@@ -82,7 +82,6 @@ out
 
 # Nuxt.js build / generate output
 .nuxt
-dist
 
 # Gatsby files
 .cache/
@@ -118,5 +117,5 @@ dist
 # Editor files
 .vscode
 
-# Build files
-dist
+# Non required build files
+example/public/dist

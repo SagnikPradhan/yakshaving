@@ -20,5 +20,7 @@
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "experimentalDecorators": true
-  }
+  },
+  "include": ["source"],
+  "exclude": ["dist", "example"]
 }
