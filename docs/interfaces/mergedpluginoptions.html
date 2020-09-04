@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>DependenciesBundleCreationOptions | yakshaving</title>
+	<title>MergedPluginOptions | yakshaving</title>
 	<meta name="description" content="Documentation for yakshaving">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,10 +56,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="dependenciesbundlecreationoptions.html">DependenciesBundleCreationOptions</a>
+					<a href="mergedpluginoptions.html">MergedPluginOptions</a>
 				</li>
 			</ul>
-			<h1>Interface DependenciesBundleCreationOptions</h1>
+			<h1>Interface MergedPluginOptions</h1>
 		</div>
 	</div>
 </header>
@@ -70,7 +70,12 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">DependenciesBundleCreationOptions</span>
+						<span class="target">MergedPluginOptions</span>
+						<ul class="tsd-hierarchy">
+							<li>
+								<a href="defaultpluginoptions.html" class="tsd-signature-type">DefaultPluginOptions</a>
+							</li>
+						</ul>
 					</li>
 				</ul>
 			</section>
@@ -81,11 +86,12 @@
 						<section class="tsd-index-section tsd-is-external">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="dependenciesbundlecreationoptions.html#dependencies" class="tsd-kind-icon">dependencies</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="dependenciesbundlecreationoptions.html#outputdirectory" class="tsd-kind-icon">output<wbr>Directory</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="dependenciesbundlecreationoptions.html#pluginfactories" class="tsd-kind-icon">plugin<wbr>Factories</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="dependenciesbundlecreationoptions.html#rollup" class="tsd-kind-icon">rollup</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="dependenciesbundlecreationoptions.html#userrequire" class="tsd-kind-icon">user<wbr>Require</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="mergedpluginoptions.html#commonjs" class="tsd-kind-icon">commonJS</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="mergedpluginoptions.html#noderesolve" class="tsd-kind-icon">node<wbr>Resolve</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="mergedpluginoptions.html#replace" class="tsd-kind-icon">replace</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="mergedpluginoptions.html#sucrase" class="tsd-kind-icon">sucrase</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="mergedpluginoptions.html#terser" class="tsd-kind-icon">terser</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="mergedpluginoptions.html#typescript" class="tsd-kind-icon">typescript</a></li>
 							</ul>
 						</section>
 					</div>
@@ -94,52 +100,62 @@
 			<section class="tsd-panel-group tsd-member-group tsd-is-external">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-					<a name="dependencies" class="tsd-anchor"></a>
-					<h3>dependencies</h3>
-					<div class="tsd-signature tsd-kind-icon">dependencies<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
+					<a name="commonjs" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> commonJS</h3>
+					<div class="tsd-signature tsd-kind-icon">commonJS<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">RollupCommonJSOptions</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/SagnikPradhan/yakshaving/blob/b6d0e4f/source/lib/development/dependencies.ts#L12">development/dependencies.ts:12</a></li>
+							<li>Defined in <a href="https://github.com/SagnikPradhan/yakshaving/blob/b6d0e4f/source/lib/default-plugins.ts#L10">default-plugins.ts:10</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-					<a name="outputdirectory" class="tsd-anchor"></a>
-					<h3>output<wbr>Directory</h3>
-					<div class="tsd-signature tsd-kind-icon">output<wbr>Directory<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="noderesolve" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> node<wbr>Resolve</h3>
+					<div class="tsd-signature tsd-kind-icon">node<wbr>Resolve<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">RollupNodeResolveOptions</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/SagnikPradhan/yakshaving/blob/b6d0e4f/source/lib/development/dependencies.ts#L14">development/dependencies.ts:14</a></li>
+							<li>Defined in <a href="https://github.com/SagnikPradhan/yakshaving/blob/b6d0e4f/source/lib/default-plugins.ts#L11">default-plugins.ts:11</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-					<a name="pluginfactories" class="tsd-anchor"></a>
-					<h3>plugin<wbr>Factories</h3>
-					<div class="tsd-signature tsd-kind-icon">plugin<wbr>Factories<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">[</span><span class="tsd-signature-symbol">typeof </span><span class="tsd-signature-type">CommonJSPlugin</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-symbol">typeof </span><span class="tsd-signature-type">NodeResolvePlugin</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-symbol">typeof </span><span class="tsd-signature-type">ReplacePlugin</span><span class="tsd-signature-symbol">]</span></div>
+					<a name="replace" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> replace</h3>
+					<div class="tsd-signature tsd-kind-icon">replace<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">RollupReplaceOptions</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/SagnikPradhan/yakshaving/blob/b6d0e4f/source/lib/development/dependencies.ts#L15">development/dependencies.ts:15</a></li>
+							<li>Defined in <a href="https://github.com/SagnikPradhan/yakshaving/blob/b6d0e4f/source/lib/default-plugins.ts#L14">default-plugins.ts:14</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-					<a name="rollup" class="tsd-anchor"></a>
-					<h3>rollup</h3>
-					<div class="tsd-signature tsd-kind-icon">rollup<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">typeof </span><a href="" class="tsd-signature-type">rollup</a></div>
+					<a name="sucrase" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> sucrase</h3>
+					<div class="tsd-signature tsd-kind-icon">sucrase<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/SagnikPradhan/yakshaving/blob/b6d0e4f/source/lib/development/dependencies.ts#L11">development/dependencies.ts:11</a></li>
+							<li>Defined in <a href="https://github.com/SagnikPradhan/yakshaving/blob/b6d0e4f/source/lib/default-plugins.ts#L13">default-plugins.ts:13</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-					<a name="userrequire" class="tsd-anchor"></a>
-					<h3>user<wbr>Require</h3>
-					<div class="tsd-signature tsd-kind-icon">user<wbr>Require<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">NodeRequire</span></div>
+					<a name="terser" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> terser</h3>
+					<div class="tsd-signature tsd-kind-icon">terser<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">TerserOptions</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/SagnikPradhan/yakshaving/blob/b6d0e4f/source/lib/development/dependencies.ts#L13">development/dependencies.ts:13</a></li>
+							<li>Defined in <a href="https://github.com/SagnikPradhan/yakshaving/blob/b6d0e4f/source/lib/default-plugins.ts#L15">default-plugins.ts:15</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+					<a name="typescript" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> typescript</h3>
+					<div class="tsd-signature tsd-kind-icon">typescript<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Parameters</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">typeof </span><span class="tsd-signature-type">typescriptPlugin</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">0</span><span class="tsd-signature-symbol">]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/SagnikPradhan/yakshaving/blob/b6d0e4f/source/lib/default-plugins.ts#L12">default-plugins.ts:12</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -167,36 +183,39 @@
 					<li class=" tsd-kind-interface tsd-is-external">
 						<a href="defaultpluginoptions.html" class="tsd-kind-icon">Default<wbr>Plugin<wbr>Options</a>
 					</li>
+					<li class=" tsd-kind-interface tsd-is-external">
+						<a href="dependenciesbundlecreationoptions.html" class="tsd-kind-icon">Dependencies<wbr>Bundle<wbr>Creation<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-is-external">
+						<a href="developmentmodeoptions.html" class="tsd-kind-icon">Development<wbr>Mode<wbr>Options</a>
+					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface tsd-is-external">
-						<a href="dependenciesbundlecreationoptions.html" class="tsd-kind-icon">Dependencies<wbr>Bundle<wbr>Creation<wbr>Options</a>
+						<a href="mergedpluginoptions.html" class="tsd-kind-icon">Merged<wbr>Plugin<wbr>Options</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-								<a href="dependenciesbundlecreationoptions.html#dependencies" class="tsd-kind-icon">dependencies</a>
+								<a href="mergedpluginoptions.html#commonjs" class="tsd-kind-icon">commonJS</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-								<a href="dependenciesbundlecreationoptions.html#outputdirectory" class="tsd-kind-icon">output<wbr>Directory</a>
+								<a href="mergedpluginoptions.html#noderesolve" class="tsd-kind-icon">node<wbr>Resolve</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-								<a href="dependenciesbundlecreationoptions.html#pluginfactories" class="tsd-kind-icon">plugin<wbr>Factories</a>
+								<a href="mergedpluginoptions.html#replace" class="tsd-kind-icon">replace</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-								<a href="dependenciesbundlecreationoptions.html#rollup" class="tsd-kind-icon">rollup</a>
+								<a href="mergedpluginoptions.html#sucrase" class="tsd-kind-icon">sucrase</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-								<a href="dependenciesbundlecreationoptions.html#userrequire" class="tsd-kind-icon">user<wbr>Require</a>
+								<a href="mergedpluginoptions.html#terser" class="tsd-kind-icon">terser</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+								<a href="mergedpluginoptions.html#typescript" class="tsd-kind-icon">typescript</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-interface tsd-is-external">
-						<a href="developmentmodeoptions.html" class="tsd-kind-icon">Development<wbr>Mode<wbr>Options</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-is-external">
-						<a href="mergedpluginoptions.html" class="tsd-kind-icon">Merged<wbr>Plugin<wbr>Options</a>
-					</li>
 					<li class=" tsd-kind-interface tsd-is-external">
 						<a href="productionbuildoptions.html" class="tsd-kind-icon">Production<wbr>Build<wbr>Options</a>
 					</li>
