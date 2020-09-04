@@ -127,14 +127,19 @@ class AppCommand extends clipanion_1.Command {
      * Read user configuration and throw if invalid path
      * @param userRoot - Users root directory
      */
-    readUserConfig(userRoot) {
+    async readUserConfig(userRoot) {
         if (this.configPath === undefined)
             return {};
         const configPath = path_1.default.isAbsolute(this.configPath)
             ? this.configPath
             : path_1.default.resolve(userRoot, this.configPath);
-        if (fs_1.default.existsSync(configPath))
-            return Promise.resolve().then(() => __importStar(require(configPath)));
+        if (fs_1.default.existsSync(configPath)) {
+            const config = (await Promise.resolve().then(() => __importStar(require(configPath)))).default;
+            if (typeof config === "function")
+                return await config();
+            else
+                return config;
+        }
         else
             throw new error_1.LibraryError("Invalid config path", {
                 isOperational: false,

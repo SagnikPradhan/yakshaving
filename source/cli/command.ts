@@ -140,15 +140,20 @@ export class AppCommand extends Command {
    * Read user configuration and throw if invalid path
    * @param userRoot - Users root directory
    */
-  private readUserConfig(userRoot: string): Promise<Config> | {} {
+  private async readUserConfig(userRoot: string): Promise<Config> {
     if (this.configPath === undefined) return {};
 
     const configPath = path.isAbsolute(this.configPath)
       ? this.configPath
       : path.resolve(userRoot, this.configPath);
 
-    if (fs.existsSync(configPath)) return import(configPath);
-    else
+    if (fs.existsSync(configPath)) {
+      const config = ((await import(configPath)) as {
+        default: (() => Promise<Config>) | Config;
+      }).default;
+      if (typeof config === "function") return await config();
+      else return config;
+    } else
       throw new LibraryError("Invalid config path", {
         isOperational: false,
         description: "Configuration file does not exist in the specified path",
