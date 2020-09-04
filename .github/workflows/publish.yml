@@ -26,7 +26,7 @@ jobs:
           node-version: 12
       - run: yarn npm publish
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM }}
+          YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM }}
           YARN_NPM_REGISTRY_SERVER: https://registry.npmjs.org/
 
   publish-gpr:
@@ -39,5 +39,5 @@ jobs:
           node-version: 12
       - run: yarn npm publish
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB }}
+          YARN_NPM_AUTH_TOKEN: ${{ secrets.GITHUB }}
           YARN_NPM_REGISTRY_SERVER: https://npm.pkg.github.com/
