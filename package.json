@@ -11,6 +11,7 @@
   "workspaces": [
     "example"
   ],
+  "repository": "git://github.com/SagnikPradhan/yakshaving.git",
   "scripts": {
     "docs": "typedoc docs source/lib/index.ts --mode file",
     "build": "tsc",
