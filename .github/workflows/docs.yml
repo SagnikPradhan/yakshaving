@@ -1,0 +1,25 @@
+name: Documentation
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 12.x
+    - run: yarn install
+    - run: yarn docs
+
+    - name: Create Pull Request
+      uses: peter-evans/create-pull-request@v3
+      with:
+        title: Updated docs 📖
+        commit-message: Updated docs
+        branch: docs-update
+        labels: auto-merge
