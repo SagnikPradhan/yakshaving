@@ -147,12 +147,33 @@ export class AppCommand extends Command {
       ? this.configPath
       : path.resolve(userRoot, this.configPath);
 
+    // Throw if file doesnt exist
     if (fs.existsSync(configPath)) {
+      const parsedPath = path.parse(configPath);
+
+      // Throw if file isnt valid type
+      if (![".ts", ".js"].includes(parsedPath.ext))
+        throw new LibraryError("Invalid config file", {
+          isOperational: false,
+          description:
+            "Configuration file can only be a Javascript or Typescript file",
+        });
+
+      // Register ts-node for ts config file
+      if (parsedPath.ext === ".ts") (await import("ts-node")).register();
+
       const config = ((await import(configPath)) as {
         default: (() => Promise<Config>) | Config;
       }).default;
+
+      // Validate file
       if (typeof config === "function") return await config();
-      else return config;
+      else if (typeof config === "object") return config;
+      else
+        throw new LibraryError("Invalid config file", {
+          isOperational: false,
+          description: "Found no valid default export",
+        });
     } else
       throw new LibraryError("Invalid config path", {
         isOperational: false,

@@ -24,5 +24,6 @@
 
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
-  }
+  },
+  "exclude": ["build.config.ts"]
 }
