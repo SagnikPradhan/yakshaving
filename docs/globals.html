@@ -88,6 +88,8 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-function tsd-is-external"><a href="globals.html#createdependenciesbundle" class="tsd-kind-icon">create<wbr>Dependencies<wbr>Bundle</a></li>
 								<li class="tsd-kind-function tsd-is-external"><a href="globals.html#createproductionbuild" class="tsd-kind-icon">create<wbr>Production<wbr>Build</a></li>
+								<li class="tsd-kind-function tsd-is-external"><a href="globals.html#defaultplugins" class="tsd-kind-icon">default<wbr>Plugins</a></li>
+								<li class="tsd-kind-function tsd-is-external"><a href="globals.html#getentrypointpath" class="tsd-kind-icon">get<wbr>Entry<wbr>Point<wbr>Path</a></li>
 								<li class="tsd-kind-function tsd-is-external"><a href="globals.html#startapplicationwatchmode" class="tsd-kind-icon">start<wbr>Application<wbr>Watch<wbr>Mode</a></li>
 								<li class="tsd-kind-function tsd-is-external"><a href="globals.html#startdevelopmentmode" class="tsd-kind-icon">start<wbr>Development<wbr>Mode</a></li>
 							</ul>
@@ -107,7 +109,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SagnikPradhan/yakshaving/blob/9776f1c/source/lib/development/dependencies.ts#L27">development/dependencies.ts:27</a></li>
+									<li>Defined in <a href="https://github.com/SagnikPradhan/yakshaving/blob/9dc2247/source/lib/development/dependencies.ts#L47">development/dependencies.ts:47</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -153,7 +155,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SagnikPradhan/yakshaving/blob/9776f1c/source/lib/production.ts#L23">production.ts:23</a></li>
+									<li>Defined in <a href="https://github.com/SagnikPradhan/yakshaving/blob/9dc2247/source/lib/production.ts#L23">production.ts:23</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -197,6 +199,74 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-is-external">
+					<a name="defaultplugins" class="tsd-anchor"></a>
+					<h3>default<wbr>Plugins</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">default<wbr>Plugins<span class="tsd-signature-symbol">(</span>typescriptPluginOptions<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Parameters</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">typeof </span><span class="tsd-signature-type">typescriptPlugin</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">0</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{ </span>development<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Plugin</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">; </span>production<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Plugin</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/SagnikPradhan/yakshaving/blob/9dc2247/source/lib/default-plugins.ts#L8">default-plugins.ts:8</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get default plugins</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>typescriptPluginOptions: <span class="tsd-signature-type">Parameters</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">typeof </span><span class="tsd-signature-type">typescriptPlugin</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">0</span><span class="tsd-signature-symbol">]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Options for typescript plugin</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{ </span>development<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Plugin</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">; </span>production<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Plugin</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-is-external">
+					<a name="getentrypointpath" class="tsd-anchor"></a>
+					<h3>get<wbr>Entry<wbr>Point<wbr>Path</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Entry<wbr>Point<wbr>Path<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, userRequire<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">NodeRequire</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/SagnikPradhan/yakshaving/blob/9dc2247/source/lib/development/dependencies.ts#L27">development/dependencies.ts:27</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get esm entry point of a dependency</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>name: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Id of dependency</p>
+									</div>
+								</li>
+								<li>
+									<h5>userRequire: <span class="tsd-signature-type">NodeRequire</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Users require</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-is-external">
 					<a name="startapplicationwatchmode" class="tsd-anchor"></a>
 					<h3>start<wbr>Application<wbr>Watch<wbr>Mode</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-is-external">
@@ -206,7 +276,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SagnikPradhan/yakshaving/blob/9776f1c/source/lib/development/application.ts#L21">development/application.ts:21</a></li>
+									<li>Defined in <a href="https://github.com/SagnikPradhan/yakshaving/blob/9dc2247/source/lib/development/application.ts#L24">development/application.ts:24</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -255,7 +325,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SagnikPradhan/yakshaving/blob/9776f1c/source/lib/development/index.ts#L26">development/index.ts:26</a></li>
+									<li>Defined in <a href="https://github.com/SagnikPradhan/yakshaving/blob/9dc2247/source/lib/development/index.ts#L26">development/index.ts:26</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -330,6 +400,12 @@
 					</li>
 					<li class=" tsd-kind-function tsd-is-external">
 						<a href="globals.html#createproductionbuild" class="tsd-kind-icon">create<wbr>Production<wbr>Build</a>
+					</li>
+					<li class=" tsd-kind-function tsd-is-external">
+						<a href="globals.html#defaultplugins" class="tsd-kind-icon">default<wbr>Plugins</a>
+					</li>
+					<li class=" tsd-kind-function tsd-is-external">
+						<a href="globals.html#getentrypointpath" class="tsd-kind-icon">get<wbr>Entry<wbr>Point<wbr>Path</a>
 					</li>
 					<li class=" tsd-kind-function tsd-is-external">
 						<a href="globals.html#startapplicationwatchmode" class="tsd-kind-icon">start<wbr>Application<wbr>Watch<wbr>Mode</a>
