@@ -78,8 +78,10 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-interface tsd-is-external"><a href="interfaces/applicationwatchmodeoptions.html" class="tsd-kind-icon">Application<wbr>Watch<wbr>Mode<wbr>Options</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/config.html" class="tsd-kind-icon">Config</a></li>
+								<li class="tsd-kind-interface tsd-is-external"><a href="interfaces/defaultpluginoptions.html" class="tsd-kind-icon">Default<wbr>Plugin<wbr>Options</a></li>
 								<li class="tsd-kind-interface tsd-is-external"><a href="interfaces/dependenciesbundlecreationoptions.html" class="tsd-kind-icon">Dependencies<wbr>Bundle<wbr>Creation<wbr>Options</a></li>
 								<li class="tsd-kind-interface tsd-is-external"><a href="interfaces/developmentmodeoptions.html" class="tsd-kind-icon">Development<wbr>Mode<wbr>Options</a></li>
+								<li class="tsd-kind-interface tsd-is-external"><a href="interfaces/mergedpluginoptions.html" class="tsd-kind-icon">Merged<wbr>Plugin<wbr>Options</a></li>
 								<li class="tsd-kind-interface tsd-is-external"><a href="interfaces/productionbuildoptions.html" class="tsd-kind-icon">Production<wbr>Build<wbr>Options</a></li>
 							</ul>
 						</section>
@@ -109,7 +111,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SagnikPradhan/yakshaving/blob/9dc2247/source/lib/development/dependencies.ts#L47">development/dependencies.ts:47</a></li>
+									<li>Defined in <a href="https://github.com/SagnikPradhan/yakshaving/blob/b6d0e4f/source/lib/development/dependencies.ts#L47">development/dependencies.ts:47</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -155,7 +157,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SagnikPradhan/yakshaving/blob/9dc2247/source/lib/production.ts#L23">production.ts:23</a></li>
+									<li>Defined in <a href="https://github.com/SagnikPradhan/yakshaving/blob/b6d0e4f/source/lib/production.ts#L18">production.ts:18</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -202,13 +204,13 @@
 					<a name="defaultplugins" class="tsd-anchor"></a>
 					<h3>default<wbr>Plugins</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">default<wbr>Plugins<span class="tsd-signature-symbol">(</span>typescriptPluginOptions<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Parameters</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">typeof </span><span class="tsd-signature-type">typescriptPlugin</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">0</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{ </span>development<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Plugin</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">; </span>production<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Plugin</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">default<wbr>Plugins<span class="tsd-signature-symbol">(</span>__namedParameters<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>commonJS<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">RollupCommonJSOptions</span><span class="tsd-signature-symbol">; </span>development<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Pick</span><span class="tsd-signature-symbol">&lt;</span><a href="interfaces/mergedpluginoptions.html" class="tsd-signature-type">MergedPluginOptions</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">"commonJS"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"nodeResolve"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"sucrase"</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">; </span>nodeResolve<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">RollupNodeResolveOptions</span><span class="tsd-signature-symbol">; </span>production<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Pick</span><span class="tsd-signature-symbol">&lt;</span><a href="interfaces/mergedpluginoptions.html" class="tsd-signature-type">MergedPluginOptions</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">"typescript"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"terser"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"replace"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"commonJS"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"nodeResolve"</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">; </span>replace<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">RollupReplaceOptions</span><span class="tsd-signature-symbol">; </span>sucrase<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">; </span>terser<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Options</span><span class="tsd-signature-symbol">; </span>typescript<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-type">RollupTypescriptPluginOptions</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">Partial</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">CompilerOptions</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-type">RollupTypescriptPluginOptions</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">Partial</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">JsonCompilerOptions</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{ </span>development<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Plugin</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">; </span>production<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Plugin</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SagnikPradhan/yakshaving/blob/9dc2247/source/lib/default-plugins.ts#L8">default-plugins.ts:8</a></li>
+									<li>Defined in <a href="https://github.com/SagnikPradhan/yakshaving/blob/b6d0e4f/source/lib/default-plugins.ts#L27">default-plugins.ts:27</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -219,10 +221,33 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>typescriptPluginOptions: <span class="tsd-signature-type">Parameters</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">typeof </span><span class="tsd-signature-type">typescriptPlugin</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">0</span><span class="tsd-signature-symbol">]</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>Options for typescript plugin</p>
-									</div>
+									<h5>__namedParameters: <span class="tsd-signature-symbol">{ </span>commonJS<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">RollupCommonJSOptions</span><span class="tsd-signature-symbol">; </span>development<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Pick</span><span class="tsd-signature-symbol">&lt;</span><a href="interfaces/mergedpluginoptions.html" class="tsd-signature-type">MergedPluginOptions</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">"commonJS"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"nodeResolve"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"sucrase"</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">; </span>nodeResolve<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">RollupNodeResolveOptions</span><span class="tsd-signature-symbol">; </span>production<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Pick</span><span class="tsd-signature-symbol">&lt;</span><a href="interfaces/mergedpluginoptions.html" class="tsd-signature-type">MergedPluginOptions</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">"typescript"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"terser"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"replace"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"commonJS"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"nodeResolve"</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">; </span>replace<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">RollupReplaceOptions</span><span class="tsd-signature-symbol">; </span>sucrase<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">; </span>terser<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Options</span><span class="tsd-signature-symbol">; </span>typescript<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-type">RollupTypescriptPluginOptions</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">Partial</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">CompilerOptions</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-type">RollupTypescriptPluginOptions</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">Partial</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">JsonCompilerOptions</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> }</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter">
+											<h5>commonJS<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">RollupCommonJSOptions</span></h5>
+										</li>
+										<li class="tsd-parameter">
+											<h5>development<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Pick</span><span class="tsd-signature-symbol">&lt;</span><a href="interfaces/mergedpluginoptions.html" class="tsd-signature-type">MergedPluginOptions</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">"commonJS"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"nodeResolve"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"sucrase"</span><span class="tsd-signature-symbol">&gt;</span></h5>
+										</li>
+										<li class="tsd-parameter">
+											<h5>node<wbr>Resolve<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">RollupNodeResolveOptions</span></h5>
+										</li>
+										<li class="tsd-parameter">
+											<h5>production<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Pick</span><span class="tsd-signature-symbol">&lt;</span><a href="interfaces/mergedpluginoptions.html" class="tsd-signature-type">MergedPluginOptions</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">"typescript"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"terser"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"replace"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"commonJS"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"nodeResolve"</span><span class="tsd-signature-symbol">&gt;</span></h5>
+										</li>
+										<li class="tsd-parameter">
+											<h5>replace<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">RollupReplaceOptions</span></h5>
+										</li>
+										<li class="tsd-parameter">
+											<h5>sucrase<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">&gt;</span></h5>
+										</li>
+										<li class="tsd-parameter">
+											<h5>terser<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Options</span></h5>
+										</li>
+										<li class="tsd-parameter">
+											<h5>typescript<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-type">RollupTypescriptPluginOptions</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">Partial</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">CompilerOptions</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-type">RollupTypescriptPluginOptions</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">Partial</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">JsonCompilerOptions</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span></h5>
+										</li>
+									</ul>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{ </span>development<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Plugin</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">; </span>production<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Plugin</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -239,7 +264,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SagnikPradhan/yakshaving/blob/9dc2247/source/lib/development/dependencies.ts#L27">development/dependencies.ts:27</a></li>
+									<li>Defined in <a href="https://github.com/SagnikPradhan/yakshaving/blob/b6d0e4f/source/lib/development/dependencies.ts#L27">development/dependencies.ts:27</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -276,7 +301,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SagnikPradhan/yakshaving/blob/9dc2247/source/lib/development/application.ts#L24">development/application.ts:24</a></li>
+									<li>Defined in <a href="https://github.com/SagnikPradhan/yakshaving/blob/b6d0e4f/source/lib/development/application.ts#L24">development/application.ts:24</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -325,7 +350,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SagnikPradhan/yakshaving/blob/9dc2247/source/lib/development/index.ts#L26">development/index.ts:26</a></li>
+									<li>Defined in <a href="https://github.com/SagnikPradhan/yakshaving/blob/b6d0e4f/source/lib/development/index.ts#L26">development/index.ts:26</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -387,10 +412,16 @@
 						<a href="interfaces/config.html" class="tsd-kind-icon">Config</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-is-external">
+						<a href="interfaces/defaultpluginoptions.html" class="tsd-kind-icon">Default<wbr>Plugin<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-is-external">
 						<a href="interfaces/dependenciesbundlecreationoptions.html" class="tsd-kind-icon">Dependencies<wbr>Bundle<wbr>Creation<wbr>Options</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-is-external">
 						<a href="interfaces/developmentmodeoptions.html" class="tsd-kind-icon">Development<wbr>Mode<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-is-external">
+						<a href="interfaces/mergedpluginoptions.html" class="tsd-kind-icon">Merged<wbr>Plugin<wbr>Options</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-is-external">
 						<a href="interfaces/productionbuildoptions.html" class="tsd-kind-icon">Production<wbr>Build<wbr>Options</a>
