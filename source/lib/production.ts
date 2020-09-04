@@ -1,9 +1,4 @@
-import type {
-  OutputOptions,
-  Plugin,
-  rollup,
-  RollupOptions
-} from "rollup";
+import type { OutputOptions, Plugin, rollup, RollupOptions } from "rollup";
 
 import { Logger } from "./utils/logger";
 
