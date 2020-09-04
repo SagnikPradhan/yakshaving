@@ -20,6 +20,26 @@ export interface DependenciesBundleCreationOptions {
 }
 
 /**
+ * Get esm entry point of a dependency
+ * @param name - Id of dependency
+ * @param userRequire - Users require
+ */
+function getEntryPointPath(name: string, userRequire: NodeRequire) {
+  const root = (...args: string[]) => path.join(name, ...args);
+  const { main, module, type } = userRequire(root("package.json"));
+
+  // Preference
+  // 1. main field, if module
+  // 2. module field
+  // 3. main field
+  const depPath = userRequire.resolve(
+    root(type === "module" ? main : module || main)
+  );
+
+  return depPath;
+}
+
+/**
  * Create dependencies bundle for the app
  * @param options - Dependencies bundle creation options
  * @returns Dependency map of locations relative to output directory
@@ -39,7 +59,7 @@ export async function createDependenciesBundle({
   const entryPoints: Record<string, string> = {};
 
   for (const dependency of dependencies)
-    entryPoints[dependency] = userRequire.resolve(dependency);
+    entryPoints[dependency] = getEntryPointPath(dependency, userRequire);
 
   console.log(`Found ${Object.keys(entryPoints).length} dependencies`);
   console.log(`Started building`, "BUILD");
