@@ -7,7 +7,12 @@ import module from "module";
 
 import { handleError, LibraryError } from "../lib/utils/error";
 import { Logger } from "../lib/utils/logger";
-import { Config, startDevelopmentMode, createProductionBuild } from "../lib";
+import {
+  Config,
+  startDevelopmentMode,
+  createProductionBuild,
+  defaultPlugins,
+} from "../lib";
 
 export class AppCommand extends Command {
   @Command.String({ required: false })
@@ -111,7 +116,11 @@ export class AppCommand extends Command {
       input: this.input ?? input,
       ignore: this.ignore ?? ignore,
       outputDirectory: this.outputDirectory ?? outputDirectory,
-      plugins: plugins ?? (await this.defaultPlugins(userRoot)),
+      plugins:
+        plugins ??
+        (await defaultPlugins({
+          tsconfig: path.resolve(userRoot, this.tsconfigPath),
+        })),
     };
 
     // Validate config
@@ -145,49 +154,5 @@ export class AppCommand extends Command {
         description: "Configuration file does not exist in the specified path",
         configPath,
       });
-  }
-
-  /**
-   * Get default plugins
-   * @param userRoot - Users root directory
-   */
-  private async defaultPlugins(userRoot: string): Promise<Config["plugins"]> {
-    const pluginCommonJS = (await import("@rollup/plugin-commonjs")).default();
-
-    const pluginNodeResolve = (
-      await import("@rollup/plugin-node-resolve")
-    ).default({
-      preferBuiltins: false,
-      extensions: [".mjs", ".js", ".json", ".node", ".ts", ".tsx", ".jsx"],
-    });
-
-    // @ts-expect-error Sucrase lacks types
-    const pluginSucrase = (await import("@rollup/plugin-sucrase")).default({
-      transforms: ["typescript", "jsx"],
-    });
-
-    const tsconfigPath = path.resolve(userRoot, this.tsconfigPath);
-    const pluginTypescript = (
-      await import("@rollup/plugin-typescript")
-    ).default({
-      tsconfig: fs.existsSync(tsconfigPath) ? tsconfigPath : undefined,
-    });
-
-    const pluginReplace = (await import("@rollup/plugin-replace")).default({
-      values: { "process.env.NODE_ENV": '"production"' },
-    });
-
-    const pluginTerser = (await import("rollup-plugin-terser")).terser();
-
-    return {
-      production: [
-        pluginCommonJS,
-        pluginNodeResolve,
-        pluginReplace,
-        pluginTypescript,
-        pluginTerser,
-      ],
-      development: [pluginCommonJS, pluginNodeResolve, pluginSucrase],
-    };
   }
 }
