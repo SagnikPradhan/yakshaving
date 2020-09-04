@@ -1,4 +1,4 @@
-import { Logger } from './logger';
+import { Logger } from "./logger";
 
 /**
  * Error emitted by library
@@ -40,9 +40,12 @@ export class LibraryError extends Error {
  * @param error - Error
  * @param logger - Optional logger instance
  */
-export function handleError(error: Error, logger: Logger | Console = console): void {
-  if (logger instanceof Logger) logger.log(error)
-  else console.error(error)
+export function handleError(
+  error: Error,
+  logger: Logger | Console = console
+): void {
+  if (logger instanceof Logger) logger.log(error);
+  else console.error(error);
 
   if (error instanceof LibraryError && error.isOperational) return;
   else process.exit(1);
