@@ -1,14 +1,13 @@
-name: documentation
+name: deploy
 
 on:
-  push:
-    branches:
-      - master
-    paths:
-      - "source/**"
+  workflow_dispatch:
+  release:
+    types:
+      - created
 
 jobs:
-  docs:
+  publish:
     runs-on: ubuntu-latest
 
     steps:
@@ -28,12 +27,9 @@ jobs:
           key: ${{ runner.os }}-yarn-
 
       - run: yarn install
-      - run: yarn docs
 
-      - name: Create pull request
-        uses: peter-evans/create-pull-request@v3
+      - run: yarn build
+
+      - run: yarn publish --tolerate-republish
         with:
-          title: Updated docs 📖
-          commit-message: Updated docs
-          branch: docs-update
-          labels: auto-merge
+          YARN_NPM_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

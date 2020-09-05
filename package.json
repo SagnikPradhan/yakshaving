@@ -14,7 +14,7 @@
   "repository": "git://github.com/SagnikPradhan/yakshaving.git",
   "scripts": {
     "docs": "typedoc docs source/lib/index.ts --mode file",
-    "build": "tsc",
+    "build": "tsc --build",
     "watch": "tsc -w",
     "format": "prettier --write source/**/*"
   },
@@ -39,5 +39,8 @@
     "ts-node": "^9.0.0",
     "typedoc": "^0.19.0",
     "typescript": "^4.0.2"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
   }
 }
