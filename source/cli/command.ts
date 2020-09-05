@@ -15,6 +15,17 @@ import {
 } from "../lib";
 
 export class AppCommand extends Command {
+  static usage = Command.Usage({
+    description: "Build bundle",
+    details: "Builds your bundle using CLI Arguments and configuration file.",
+    examples: [
+      ["Simplest way to use the CLI", "$0 source/index.ts dist"],
+      ["Using a configuration file", "$0 -c config.ts"],
+      ["Running in development mode", "$0 -c config.ts --dev"],
+      ["Ignoring certain depedencies", "$0 -i pages -c config.ts --dev"],
+    ],
+  });
+
   @Command.String({ required: false })
   public input?: string;
 
@@ -33,7 +44,7 @@ export class AppCommand extends Command {
   @Command.Array("--ignore,-i")
   public ignore: string[] = [];
 
-  @Command.Path()
+  @Command.Path("build")
   async execute(): Promise<void> {
     const console = new Logger("Root");
     console.log("Starting Up!");

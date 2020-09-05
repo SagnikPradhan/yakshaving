@@ -1,5 +1,6 @@
 import { Command } from "clipanion";
 export declare class AppCommand extends Command {
+    static usage: import("clipanion").Usage;
     input?: string;
     outputDirectory?: string;
     configPath?: string;

@@ -1,6 +1,7 @@
 name: builds
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - master
@@ -38,7 +39,7 @@ jobs:
   update:
     runs-on: ubuntu-latest
 
-    if: github.event_name == 'push'
+    if: github.event_name != 'pull_request'
     needs: build
 
     steps:

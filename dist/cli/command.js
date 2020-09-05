@@ -165,6 +165,16 @@ class AppCommand extends clipanion_1.Command {
             });
     }
 }
+AppCommand.usage = clipanion_1.Command.Usage({
+    description: "Build bundle",
+    details: "Builds your bundle using CLI Arguments and configuration file.",
+    examples: [
+        ["Simplest way to use the CLI", "$0 source/index.ts dist"],
+        ["Using a configuration file", "$0 -c config.ts"],
+        ["Running in development mode", "$0 -c config.ts --dev"],
+        ["Ignoring certain depedencies", "$0 -i pages -c config.ts --dev"],
+    ],
+});
 __decorate([
     clipanion_1.Command.String({ required: false })
 ], AppCommand.prototype, "input", void 0);
@@ -184,7 +194,7 @@ __decorate([
     clipanion_1.Command.Array("--ignore,-i")
 ], AppCommand.prototype, "ignore", void 0);
 __decorate([
-    clipanion_1.Command.Path()
+    clipanion_1.Command.Path("build")
 ], AppCommand.prototype, "execute", null);
 exports.AppCommand = AppCommand;
 //# sourceMappingURL=command.js.map

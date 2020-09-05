@@ -5,9 +5,11 @@ import { AppCommand } from "./command";
 import { handleError } from "../lib/utils/error";
 
 async function initialiseCLI() {
+  const { name, version } = await import("../../package.json" as string);
+
   const cli = new CLI({
-    binaryName: "v",
-    binaryVersion: "0.0.1",
+    binaryName: name,
+    binaryVersion: version,
     enableColors: true,
   });
 
