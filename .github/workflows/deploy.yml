@@ -6,6 +6,9 @@ on:
     types:
       - created
 
+env:
+  YARN_NPM_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 jobs:
   publish:
     runs-on: ubuntu-latest
@@ -31,5 +34,3 @@ jobs:
       - run: yarn build
 
       - run: yarn npm publish --tolerate-republish
-        env:
-          YARN_NPM_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

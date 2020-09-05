@@ -2,6 +2,10 @@ name: builds
 
 on:
   push:
+    branches:
+      - master
+    paths:
+      - "source/**"
   pull_request:
     branches:
       - master
