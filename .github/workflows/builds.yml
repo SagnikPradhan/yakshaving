@@ -1,14 +1,15 @@
-name: documentation
+name: builds
 
 on:
   push:
+  pull_request:
     branches:
       - master
     paths:
       - "source/**"
 
 jobs:
-  docs:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -17,8 +18,7 @@ jobs:
         with:
           node-version: 12.x
 
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
+      - id: yarn-cache-dir-path
         run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
 
       - uses: actions/cache@v2
@@ -28,12 +28,8 @@ jobs:
           key: ${{ runner.os }}-yarn-
 
       - run: yarn install
-      - run: yarn docs
 
-      - name: Create pull request
-        uses: peter-evans/create-pull-request@v3
-        with:
-          title: Updated docs 📖
-          commit-message: Updated docs
-          branch: docs-update
-          labels: auto-merge
+      - run: yarn build
+
+    # - name: Check version
+    #   run: yarn version check
