@@ -31,5 +31,5 @@ jobs:
       - run: yarn build
 
       - run: yarn publish --tolerate-republish
-        with:
+        env:
           YARN_NPM_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
