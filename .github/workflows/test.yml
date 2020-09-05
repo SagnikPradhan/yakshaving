@@ -1,18 +1,16 @@
-name: builds
+name: tests
 
 on:
   workflow_dispatch:
-  push:
+  pull_request:
     branches:
       - master
     paths:
       - "source/**"
 
 jobs:
-  update:
+  build:
     runs-on: ubuntu-latest
-
-    if: github.event_name != 'pull_request'
 
     steps:
       - uses: actions/checkout@v2
@@ -33,13 +31,7 @@ jobs:
 
       - run: yarn build
 
-      - run: yarn docs
+      - run: cd example
 
-      - name: Create pull request
-        uses: peter-evans/create-pull-request@v3
-        with:
-          title: Updated build files
-          body: Updated `dist` and `docs`
-          branch: auto-update
-          commit-message: Updated build
-          labels: auto-merge
+      - run: yarn yakshaving build -c build.config.js
+      
