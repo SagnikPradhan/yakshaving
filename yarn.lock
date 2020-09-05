@@ -1839,6 +1839,8 @@ typescript@^4.0.2:
       optional: true
     rollup-plugin-terser:
       optional: true
+    ts-node:
+      optional: true
     tslib:
       optional: true
   bin:
