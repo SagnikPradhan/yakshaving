@@ -35,5 +35,20 @@ jobs:
 
       - run: yarn build
 
-    # - name: Check version
-    #   run: yarn version check
+  update:
+    runs-on: ubuntu-latest
+
+    if: github.event_name == 'push'
+    needs: build
+
+    steps:
+      - run: yarn docs
+
+      - name: Create pull request
+        uses: peter-evans/create-pull-request@v3
+        with:
+          title: Updated build files
+          body: Updated `dist` and `docs`
+          branch: auto-update
+          commit-message: Updated build
+          labels: auto-merge
