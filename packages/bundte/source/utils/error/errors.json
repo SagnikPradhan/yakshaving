@@ -1,0 +1,13 @@
+{
+  "YK001": {
+    "name": "MANIFEST_NOT_FOUND",
+    "description": "A package.json file was not found, make sure you are running the command from the root",
+    "isOperational": false
+  },
+
+  "YK002": {
+    "name": "ENTRIES_NOT_FOUND",
+    "description": "No entry points were found in the source directory",
+    "isOperational": false
+  }
+}

@@ -3,7 +3,7 @@
   "private": true,
   "workspaces": [
     "./website",
-    "./package"
+    "./packages/**/*"
   ],
   "devDependencies": {
     "prettier": "^2.3.2",
