@@ -1,4 +1,4 @@
-import { Fn, RecursiveObject } from "../types/basic";
+import { Fn, RecursiveObject } from "../types/basic"
 
 export type Schema = RecursiveObject<Fn>;
 

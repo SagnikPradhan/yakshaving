@@ -1,22 +1,22 @@
-// Third party
-import type { TransformOptions } from "@babel/core";
-import type { Options as PresetEnvOptions } from "@babel/preset-env";
+// third party
+import type { TransformOptions } from "@babel/core"
+import type { Options as PresetEnvOptions } from "@babel/preset-env"
 
-// Native
-import { promises as fs } from "fs";
+// native
+import { promises as fs } from "fs"
 
-// Local
-import { root } from "../../utils/path";
+// local
+import { root } from "../../utils/path"
 
-/** Get default babel options. */
-export function getBabelDefaultOptions(): Omit<
+/** get default babel options. */
+export function getBabelDefaultOptions (): Omit<
   TransformOptions,
   "include" | "exclude"
-> {
+  > {
   return {
     presets: [
       [
-        require.resolve("@babel/preset-env"),
+        require.resolve( "@babel/preset-env" ),
         {
           targets: { node: "14" },
           modules: false,
@@ -25,13 +25,13 @@ export function getBabelDefaultOptions(): Omit<
         } as PresetEnvOptions,
       ],
 
-      [require.resolve("@babel/preset-stage-3"), { useBuiltIns: true }],
+      [require.resolve( "@babel/preset-stage-3" ), { useBuiltIns: true }],
     ],
-  };
+  }
 }
 
-/** Checks if there is a babelrc or babel.config is in users root directory. */
-export async function doesUserHaveBabelConfig() {
-  const items = await fs.readdir(root());
-  return items.some((item) => ["babelrc", "babel.config"].includes(item));
+/** checks if there is a babelrc or babel.config is in users root directory. */
+export async function doesUserHaveBabelConfig () {
+  const items = await fs.readdir( root() )
+  return items.some( ( item ) => ["babelrc", "babel.config"].includes( item ) )
 }
