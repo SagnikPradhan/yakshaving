@@ -1,7 +1,7 @@
 // local
+import getPlugins from "../plugins"
 import { root } from "../../utils/path"
 import { throwError } from "../../utils/error"
-import getPlugins from "../plugins"
 
 // native
 import fs from "fs"
@@ -9,10 +9,10 @@ import module from "module"
 import path from "path"
 
 // third party
-import * as rollup from "rollup"
 import type * as manifest from "@schemastore/package"
+import * as rollup from "rollup"
 
-const SCRIPT_EXTENSIONS = [".mjs", ".cjs", ".js", ".jsx", ".ts", ".tsx"]
+const SCRIPT_EXTENSIONS = [ ".mjs", ".cjs", ".js", ".jsx", ".ts", ".tsx" ]
 
 export async function watch () {
   const manifest = await getManifest()
@@ -24,11 +24,11 @@ export async function watch () {
   const options: rollup.RollupWatchOptions = {
     input: entries,
 
-    plugins: await getPlugins( {
+    plugins: await getPlugins({
       buildMode: "development",
       typescriptMode: usesTypescript,
       dependencies: externalDependencies,
-    } ),
+    }),
 
     external: externalDependencies,
 
@@ -58,22 +58,22 @@ async function getEntries () {
     .filter( ( file ) => SCRIPT_EXTENSIONS.includes( path.parse( file ).ext ) )
     .map( ( path ) => root( "source", path ) )
 
-  if ( entries.length === 0 ) throwError( "YK002", { entries } )
+  if ( entries.length === 0 ) throwError( "YK002", { entries })
 
   return entries
 }
 
-function getExternalDependencies ( {
+function getExternalDependencies ({
   dependencies,
   peerDependencies,
   optionalDependencies,
 }: manifest.CoreProperties ) {
   return [
     ...module.builtinModules,
-    ...Object.keys( {
+    ...Object.keys({
       ...dependencies,
       ...peerDependencies,
       ...optionalDependencies,
-    } ),
+    }),
   ]
 }

@@ -5,7 +5,7 @@ import { Command } from "clipanion"
 import { watch } from "./implmentation"
 
 export class WatchCommand extends Command {
-  static override paths = [["watch"]];
+  static override paths = [ [ "watch" ] ];
 
   async execute () {
     await watch()

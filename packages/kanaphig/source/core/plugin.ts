@@ -1,5 +1,5 @@
-import { RecursiveObject } from "../types/basic"
 import { ConfigurationSource } from "./source"
+import { RecursiveObject } from "../types/basic"
 
 export type PluginFactory<
   Name extends string,

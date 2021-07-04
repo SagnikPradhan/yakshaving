@@ -1,8 +1,9 @@
-import { flattenObject, Path, PathValue } from "../helpers/flatten"
-import { Fn } from "../types/basic"
-import { ExtractHelpers, PluginFactory } from "./plugin"
+// locals
 import { ExtractConfigurationFromSchema, Schema } from "./schema"
+import { ExtractHelpers, PluginFactory } from "./plugin"
+import { Path, PathValue, flattenObject } from "../helpers/flatten"
 import { ConfigurationSource } from "./source"
+import { Fn } from "../types/basic"
 
 export class K<
   PluginFactories extends PluginFactory<any>[] | [PluginFactory<any>],
@@ -18,7 +19,7 @@ export class K<
     const plugins = factories.map( ( factory ) => factory( source ) )
 
     const helpers = Object.fromEntries(
-      plugins.map( ( { name, helpers } ) => [name, helpers] )
+      plugins.map( ({ name, helpers }) => [ name, helpers ])
     ) as ExtractHelpers<PluginFactories>
 
     const schema = schemaFactory( helpers )
@@ -30,13 +31,13 @@ export class K<
     this.#configuration = {} as Record<string, unknown>
 
     for ( const key in flattenedSchema ) {
-      const transformer = flattenedSchema[key]!
-      this.#configuration[key] = transformer( source.get( key ) )
+      const transformer = flattenedSchema[ key ]!
+      this.#configuration[ key ] = transformer( source.get( key ) )
     }
   }
 
   get<P extends Path<UserSchema>> ( path: P ) {
-    return this.#configuration[path as string] as PathValue<
+    return this.#configuration[ path as string ] as PathValue<
       ExtractConfigurationFromSchema<UserSchema>,
       P
     >

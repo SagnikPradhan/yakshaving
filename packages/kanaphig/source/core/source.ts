@@ -8,6 +8,6 @@ export class ConfigurationSource {
   add ( key: string, value: unknown ) {
     const array = this.#map.get( key )
     if ( array ) array.push( value )
-    else this.#map.set( key, [value] )
+    else this.#map.set( key, [ value ])
   }
 }

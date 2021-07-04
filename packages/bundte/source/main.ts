@@ -8,11 +8,11 @@ import { handleError } from "./utils/error"
 
 // main entry point
 async function main () {
-  const cli = new Cli( {
+  const cli = new Cli({
     binaryLabel: name,
     binaryName: name,
     binaryVersion: version,
-  } )
+  })
 
   cli.register( WatchCommand )
 

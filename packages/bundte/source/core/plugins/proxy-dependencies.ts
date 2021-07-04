@@ -1,5 +1,9 @@
+// third party
 import { Plugin } from "rollup"
+
+// local
 import { PROXIED_DEPENDENCIES } from "../constants"
+
 
 /**
  * proxies users dependencies from our package.
@@ -7,7 +11,7 @@ import { PROXIED_DEPENDENCIES } from "../constants"
  * @param dependencies - Users dependencies
  * @returns Rollup plugin
  */
-export function proxyDependencies ( dependencies: string[] ): Plugin {
+export function proxyDependencies ( dependencies: string[]): Plugin {
   return {
     name: "bundte-proxy-dependencies",
 

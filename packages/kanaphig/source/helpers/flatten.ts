@@ -38,9 +38,9 @@ export function flattenObject<O extends RecursiveObject<unknown>> (
 ) {
   const flattened = {} as Flatten<O>
 
-  for ( const [key, value] of Object.entries( object ) )
+  for ( const [ key, value ] of Object.entries( object ) )
     if ( typeof value !== "object" || value === null )
-      flattened[`${path}${key}` as Path<O>] = value as PathValue<O, Path<O>>
+      flattened[ `${path}${key}` as Path<O> ] = value as PathValue<O, Path<O>>
     else
       Object.assign(
         flattened,
@@ -59,19 +59,19 @@ export type UnFlatten<O extends Record<string, unknown>> = O extends Flatten<
 export function unflatten<O extends Record<string, unknown>> ( object: O ) {
   const result = {} as UnFlatten<O>
 
-  for ( const [key, value] of Object.entries( object ) ) {
+  for ( const [ key, value ] of Object.entries( object ) ) {
     const parts = key.split( "." )
 
     const object = parts.reduce( ( object, part, idx ) => {
       if ( idx === parts.length - 1 ) return object
 
-      if ( typeof object[part] !== "object" || object[part] === null )
-        object[part] = {}
+      if ( typeof object[ part ] !== "object" || object[ part ] === null )
+        object[ part ] = {}
 
-      return object[part] as Record<string, unknown>
+      return object[ part ] as Record<string, unknown>
     }, result as Record<string, unknown> )
 
-    object[parts[parts.length - 1]!] = value
+    object[ parts[ parts.length - 1 ]! ] = value
   }
 
   return result

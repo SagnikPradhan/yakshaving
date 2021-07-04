@@ -17,7 +17,7 @@ export class YakshavingError<
     descriptor: Descriptor,
     properties: Record<string, unknown> = {}
   ) {
-    const { name, description, isOperational } = errors[descriptor]
+    const { name, description, isOperational } = errors[ descriptor ]
 
     super( `${name}:${description}` )
 

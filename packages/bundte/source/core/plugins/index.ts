@@ -1,14 +1,14 @@
 // third party
-import ts from "rollup-plugin-ts"
-import json from "@rollup/plugin-json"
 import babel from "@rollup/plugin-babel"
 import commonJs from "@rollup/plugin-commonjs"
+import json from "@rollup/plugin-json"
 import nodeResolve from "@rollup/plugin-node-resolve"
 import { terser } from "rollup-plugin-terser"
+import ts from "rollup-plugin-ts"
 
 // local
+import { doesUserHaveBabelConfig, getBabelDefaultOptions } from "./babel"
 import { SCRIPT_EXTENSIONS } from "../constants"
-import { getBabelDefaultOptions, doesUserHaveBabelConfig } from "./babel"
 import { proxyDependencies } from "./proxy-dependencies"
 
 /**
@@ -20,7 +20,7 @@ import { proxyDependencies } from "./proxy-dependencies"
  * @param options.dependencies - Users dependencies list
  * @returns Array of plugins
  */
-export default async function getPlugins ( {
+export default async function getPlugins ({
   buildMode,
   typescriptMode,
   dependencies,
@@ -28,10 +28,10 @@ export default async function getPlugins ( {
   buildMode: "development" | "production";
   typescriptMode: boolean;
   dependencies: string[];
-} ) {
+}) {
   const plugins = [
     proxyDependencies( dependencies ),
-    nodeResolve( { extensions: [...SCRIPT_EXTENSIONS, ".node", ".json"] } ),
+    nodeResolve({ extensions: [ ...SCRIPT_EXTENSIONS, ".node", ".json" ] }),
     commonJs(),
     json(),
   ]
@@ -41,11 +41,11 @@ export default async function getPlugins ( {
 
   if ( typescriptMode )
     plugins.push(
-      ts( {
+      ts({
         babelConfig,
         transpiler: "babel",
-        tsconfig: ( c ) => ( { ...c, sourceMap: true, declaration: true } ),
-      } )
+        tsconfig: ( c ) => ({ ...c, sourceMap: true, declaration: true }),
+      })
     )
 
   if ( !typescriptMode ) plugins.push( babel( babelConfig ) )
