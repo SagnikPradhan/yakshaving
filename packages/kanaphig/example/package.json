@@ -1,0 +1,15 @@
+{
+  "name": "@yakshaving/example-kanaphig",
+  "scripts": {
+    "watch": "tsc -w",
+    "build": "tsc",
+    "run": "node ./dist/main.js"
+  },
+  "dependencies": {
+    "@yakshaving/kanaphig": "workspace:packages/kanaphig"
+  },
+  "devDependencies": {
+    "@yakshaving/common": "workspace:packages/common",
+    "typescript": "^4.3.5"
+  }
+}
