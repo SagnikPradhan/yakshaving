@@ -1,10 +1,10 @@
-import { ConfigurationSource } from "./source"
-import { RecursiveObject } from "../types/basic"
+import { ConfigurationSource } from "./source";
+import { RecursiveObject } from "../types/basic";
 
 export type PluginFactory<
   Name extends string,
   Helpers extends RecursiveObject<unknown> = Record<string, never>
-> = ( source: ConfigurationSource ) => PluginInterface<Name, Helpers>;
+> = (source: ConfigurationSource) => PluginInterface<Name, Helpers>;
 
 export type PluginInterface<
   Name extends string,

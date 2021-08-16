@@ -3,6 +3,7 @@
     "arcanis.vscode-zipfs",
     "jpoissonnier.vscode-styled-components",
     "vivaxy.vscode-conventional-commits",
-    "dbaeumer.vscode-eslint"
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode"
   ]
 }

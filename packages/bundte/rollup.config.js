@@ -1,17 +1,17 @@
-import fs from "fs"
+import fs from "fs";
 
-import commonjs from "@rollup/plugin-commonjs"
-import json from "@rollup/plugin-json"
-import { nodeResolve } from "@rollup/plugin-node-resolve"
-import { terser } from "rollup-plugin-terser"
-import typescript from "rollup-plugin-ts"
+import commonjs from "@rollup/plugin-commonjs";
+import json from "@rollup/plugin-json";
+import { nodeResolve } from "@rollup/plugin-node-resolve";
+import { terser } from "rollup-plugin-terser";
+import typescript from "rollup-plugin-ts";
 
-import { dependencies, peerDependencies } from "./package.json"
+import { dependencies, peerDependencies } from "./package.json";
 
-const isDev = process.env.ROLLUP_WATCH
+const isDev = process.env.ROLLUP_WATCH;
 
 // clear directory
-if ( !isDev ) fs.rmSync( "./dist", { recursive: true, force: true })
+if (!isDev) fs.rmSync("./dist", { recursive: true, force: true });
 
 /** @type import("rollup").RollupOptions */
 const config = {
@@ -19,7 +19,7 @@ const config = {
 
   plugins: [
     nodeResolve({
-      extensions: [ ".mjs", ".js", ".json", ".node", ".ts" ],
+      extensions: [".mjs", ".js", ".json", ".node", ".ts"],
       preferBuiltins: true,
       browser: false,
     }),
@@ -31,10 +31,7 @@ const config = {
     typescript({ transpiler: "babel", browserslist: "node 14" }),
   ],
 
-  external: [
-    ...Object.keys( dependencies ),
-    ...Object.keys( peerDependencies ),
-  ],
+  external: [...Object.keys(dependencies), ...Object.keys(peerDependencies)],
 
   preserveEntrySignatures: false,
 
@@ -43,9 +40,9 @@ const config = {
     format: "commonjs",
     sourcemap: true,
   },
-}
+};
 
 // minify in production builds
-if ( !isDev ) config.plugins.push( terser() )
+if (!isDev) config.plugins.push(terser());
 
-export default config
+export default config;
