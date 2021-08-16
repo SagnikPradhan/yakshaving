@@ -1,26 +1,23 @@
 // locals
 import { ExtractConfigurationFromSchema, Schema } from "./schema";
-import { ExtractHelpers, PluginFactory } from "./plugin";
+import { ExtractHelpers, Plugin } from "./plugin";
 import { Path, PathValue, flattenObject } from "../helpers/flatten";
-import { ConfigurationSource } from "./source";
-import { Fn } from "../types/basic";
+import { Fn, RecursiveObject } from "../types/basic";
 
 export class K<
-  PluginFactories extends PluginFactory<any>[] | [PluginFactory<any>],
+  Plugins extends Plugin<any>[] | [Plugin<any>],
   UserSchema extends Schema
 > {
-  #configuration: Record<string, unknown>;
+  #configuration = new Map<Path<UserSchema>, unknown>();
 
-  constructor(
-    factories: PluginFactories,
-    schemaFactory: (helpers: ExtractHelpers<PluginFactories>) => UserSchema
-  ) {
-    const source = new ConfigurationSource();
-    const plugins = factories.map((factory) => factory(source));
-
-    const helpers = Object.fromEntries(
-      plugins.map(({ name, helpers }) => [name, helpers])
-    ) as ExtractHelpers<PluginFactories>;
+  constructor({
+    plugins,
+    schema: schemaFactory,
+  }: {
+    plugins: Plugins;
+    schema: (helpers: ExtractHelpers<Plugins>) => UserSchema;
+  }) {
+    const { helpers, source } = this.extractInformationFromPlugins(plugins);
 
     const schema = schemaFactory(helpers);
     const flattenedSchema = flattenObject(schema) as Record<
@@ -28,16 +25,25 @@ export class K<
       Fn<unknown>
     >;
 
-    this.#configuration = {} as Record<string, unknown>;
-
-    for (const key in flattenedSchema) {
-      const transformer = flattenedSchema[key]!;
-      this.#configuration[key] = transformer(source.get(key));
-    }
+    for (const [key, transformer] of Object.entries(flattenedSchema))
+      this.#configuration.set(key, transformer(source[key]));
   }
 
-  get<P extends Path<UserSchema>>(path: P) {
-    return this.#configuration[path as string] as PathValue<
+  private extractInformationFromPlugins(plugins: Plugins) {
+    return plugins.reduce(
+      ({ source, helpers }, plugin) => ({
+        helpers: { ...helpers, [plugin.name]: plugin.helpers },
+        source: { ...source, ...flattenObject(plugin.source || {}) },
+      }),
+      {
+        source: {} as RecursiveObject<unknown>,
+        helpers: {} as ExtractHelpers<Plugins>,
+      }
+    );
+  }
+
+  public get<P extends Path<UserSchema>>(path: P) {
+    return this.#configuration.get(path) as PathValue<
       ExtractConfigurationFromSchema<UserSchema>,
       P
     >;

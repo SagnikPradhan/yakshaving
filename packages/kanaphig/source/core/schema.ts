@@ -1,5 +1,11 @@
 import { Fn, RecursiveObject } from "../types/basic";
 
+interface Payload<Data = any> {
+  data: Data;
+}
+
+export type Parser = Fn<Payload, Payload>;
+
 export type Schema = RecursiveObject<Fn>;
 
 export type ExtractConfigurationFromSchema<S extends Schema> = {

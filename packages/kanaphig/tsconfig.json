@@ -8,5 +8,5 @@
     "composite": true
   },
 
-  "include": ["./source/*"]
+  "include": ["./source/**/*"]
 }

@@ -1,6 +1,6 @@
-import { Fn } from "../types/basic";
+import { Fn } from "../../types/basic";
 
-export function compose<Fns extends Fn[]>(
+export function compose<Fns extends Fn[] | [Fn]>(
   fns: Fns
 ): (argument: FirstArgument<Fns>) => LastReturn<Fns> {
   return (value: FirstArgument<Fns>) =>

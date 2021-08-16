@@ -1,27 +1,27 @@
-import { ConfigurationSource } from "./source";
 import { RecursiveObject } from "../types/basic";
 
-export type PluginFactory<
+export interface Plugin<
   Name extends string,
-  Helpers extends RecursiveObject<unknown> = Record<string, never>
-> = (source: ConfigurationSource) => PluginInterface<Name, Helpers>;
-
-export type PluginInterface<
-  Name extends string,
-  Helpers extends RecursiveObject<unknown> = Record<string, never>
-> = {
+  Helpers extends RecursiveObject<unknown> = Record<string, any>
+> {
   name: Name;
-  helpers: Helpers;
-};
+  helpers?: Helpers;
+  source?: RecursiveObject<unknown>;
+}
 
-export type ExtractHelpers<Plugins extends PluginFactory<any>[]> =
-  Plugins extends [PluginFactory<infer Name, infer Helpers>]
-    ? { [name in Name]: Helpers }
-    : Plugins extends [
-        PluginFactory<infer Name, infer Helpers>,
-        ...infer OtherPlugins
-      ]
-    ? OtherPlugins extends PluginFactory<any>[]
-      ? ExtractHelpers<OtherPlugins> & { [name in Name]: Helpers }
-      : { [name in Name]: Helpers }
-    : never;
+export type ExtractHelpers<Plugins extends Plugin<any>[]> = Plugins extends [
+  Plugin<infer Name, infer Helpers>
+]
+  ? { [name in Name]: Helpers }
+  : Plugins extends [Plugin<infer Name, infer Helpers>, ...infer OtherPlugins]
+  ? OtherPlugins extends Plugin<any>[]
+    ? ExtractHelpers<OtherPlugins> & { [name in Name]: Helpers }
+    : { [name in Name]: Helpers }
+  : never;
+
+export const plugin = <
+  Name extends string,
+  UserPlugin extends Plugin<Name, any>
+>(
+  plugin: UserPlugin
+) => plugin;
