@@ -38,7 +38,7 @@ export function sources(
 			 * @param key - Environment variable key without prefix
 			 */
 			env(key: string) {
-				return (value: unknown) =>
+				return <Input>(value: Input): Input | string | undefined =>
 					value || environment.raw[envPrefix ? `${envPrefix}__${key}` : key]
 			},
 
@@ -48,7 +48,7 @@ export function sources(
 			 * @param key - Configuration file key in dot notation
 			 */
 			file(key: string) {
-				return (value: unknown) => {
+				return <Input>(value: Input): Input | unknown => {
 					if (!configFile) throw new Error("No config file mentioned")
 					else if (value) return value
 					else return configFile[key]
