@@ -1,13 +1,13 @@
 import { K } from "@yakshaving/kanaphig/core/k";
-import { env } from "@yakshaving/kanaphig/plugins/sources/env";
-import { compose } from "@yakshaving/kanaphig/plugins/utilities/compose";
+import { sources } from "@yakshaving/kanaphig/plugins/sources";
+import { utilities } from "@yakshaving/kanaphig/plugins/utilities";
 
 export default new K({
-  plugins: [env({ prefix: "EXAMPLE_KANAPHIG" })],
+  plugins: [utilities(), sources()],
 
-  schema: ({ env }) => ({
+  schema: ({ env, chain }) => ({
     discord: {
-      token: compose([env.value("DISCORD_TOKEN")]),
+      token: chain(env("DISCORD_TOKEN")),
     },
   }),
 });

@@ -4,12 +4,14 @@ import { ExtractHelpers, Plugin } from "./plugin";
 import { Path, PathValue, flattenObject } from "../helpers/flatten";
 import { Fn, RecursiveObject } from "../types/basic";
 
+/** kanaphig manager */
 export class K<
   Plugins extends Plugin<any>[] | [Plugin<any>],
   UserSchema extends Schema
 > {
   #configuration = new Map<Path<UserSchema>, unknown>();
 
+  /** create new kanaphig manager */
   constructor({
     plugins,
     schema: schemaFactory,
@@ -32,7 +34,7 @@ export class K<
   private extractInformationFromPlugins(plugins: Plugins) {
     return plugins.reduce(
       ({ source, helpers }, plugin) => ({
-        helpers: { ...helpers, [plugin.name]: plugin.helpers },
+        helpers: { ...helpers, ...plugin.helpers },
         source: { ...source, ...flattenObject(plugin.source || {}) },
       }),
       {

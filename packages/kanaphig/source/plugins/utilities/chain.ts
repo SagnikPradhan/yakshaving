@@ -1,7 +1,12 @@
 import { Fn } from "../../types/basic";
 
-export function compose<Fns extends Fn[] | [Fn]>(
-  fns: Fns
+/**
+ * chains functions
+ * @param fns - functions
+ * @returns new function
+ */
+export function chain<Fns extends Fn[] | [Fn]>(
+  ...fns: Fns
 ): (argument: FirstArgument<Fns>) => LastReturn<Fns> {
   return (value: FirstArgument<Fns>) =>
     fns.reduce((value, fn) => fn(value), value as LastReturn<Fns>);

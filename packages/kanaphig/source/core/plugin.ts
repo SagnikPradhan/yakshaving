@@ -10,13 +10,13 @@ export interface Plugin<
 }
 
 export type ExtractHelpers<Plugins extends Plugin<any>[]> = Plugins extends [
-  Plugin<infer Name, infer Helpers>
+  Plugin<any, infer Helpers>
 ]
-  ? { [name in Name]: Helpers }
-  : Plugins extends [Plugin<infer Name, infer Helpers>, ...infer OtherPlugins]
+  ? Helpers
+  : Plugins extends [Plugin<any, infer Helpers>, ...infer OtherPlugins]
   ? OtherPlugins extends Plugin<any>[]
-    ? ExtractHelpers<OtherPlugins> & { [name in Name]: Helpers }
-    : { [name in Name]: Helpers }
+    ? ExtractHelpers<OtherPlugins> & Helpers
+    : Helpers
   : never;
 
 export const plugin = <

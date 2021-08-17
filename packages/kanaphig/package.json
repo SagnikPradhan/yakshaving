@@ -20,5 +20,9 @@
     "@types/node": "^14.14.41",
     "@yakshaving/common": "workspace:packages/common",
     "typescript": "^4.3.4"
+  },
+  "dependencies": {
+    "json5": "^2.2.0",
+    "yaml": "^1.10.2"
   }
 }

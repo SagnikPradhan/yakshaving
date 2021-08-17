@@ -1,27 +1,15 @@
-import { plugin } from "../../core/plugin";
+export function handleEnvironmentVariables(prefix?: string) {
+  const variables = Object.entries(process.env).filter(([key]) =>
+    prefix ? key.startsWith(prefix) : true
+  );
 
-export function env({ prefix }: { prefix: string }) {
-  return plugin({
-    name: "env",
+  const raw = Object.fromEntries(variables);
 
-    helpers: {
-      value: (env: string) => {
-        const variable = env
-          ? prefix
-            ? process.env[`${prefix}__${env}`]
-            : process.env[env]
-          : undefined;
+  const parsed = Object.fromEntries(
+    variables.map(([key, value]) => [toCamelCase(toParts(key)), value])
+  );
 
-        return (): string | undefined => variable;
-      },
-    },
-
-    source: Object.fromEntries(
-      Object.entries(process.env)
-        .filter(([key]) => (prefix ? key.startsWith(prefix) : true))
-        .map(([key, value]) => [toCamelCase(toParts(key)), value])
-    ),
-  });
+  return { parsed, raw };
 }
 
 function toParts(string: string) {
