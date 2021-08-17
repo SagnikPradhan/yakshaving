@@ -1,48 +1,48 @@
-import fs from "fs";
+import fs from "fs"
 
-import commonjs from "@rollup/plugin-commonjs";
-import json from "@rollup/plugin-json";
-import { nodeResolve } from "@rollup/plugin-node-resolve";
-import { terser } from "rollup-plugin-terser";
-import typescript from "rollup-plugin-ts";
+import commonjs from "@rollup/plugin-commonjs"
+import json from "@rollup/plugin-json"
+import { nodeResolve } from "@rollup/plugin-node-resolve"
+import { terser } from "rollup-plugin-terser"
+import typescript from "rollup-plugin-ts"
 
-import { dependencies, peerDependencies } from "./package.json";
+import { dependencies, peerDependencies } from "./package.json"
 
-const isDev = process.env.ROLLUP_WATCH;
+const isDev = process.env.ROLLUP_WATCH
 
 // clear directory
-if (!isDev) fs.rmSync("./dist", { recursive: true, force: true });
+if (!isDev) fs.rmSync("./dist", { recursive: true, force: true })
 
 /** @type import("rollup").RollupOptions */
 const config = {
-  input: "./source/main.ts",
+	input: "./source/main.ts",
 
-  plugins: [
-    nodeResolve({
-      extensions: [".mjs", ".js", ".json", ".node", ".ts"],
-      preferBuiltins: true,
-      browser: false,
-    }),
+	plugins: [
+		nodeResolve({
+			extensions: [".mjs", ".js", ".json", ".node", ".ts"],
+			preferBuiltins: true,
+			browser: false,
+		}),
 
-    commonjs(),
+		commonjs(),
 
-    json(),
+		json(),
 
-    typescript({ transpiler: "babel", browserslist: "node 14" }),
-  ],
+		typescript({ transpiler: "babel", browserslist: "node 14" }),
+	],
 
-  external: [...Object.keys(dependencies), ...Object.keys(peerDependencies)],
+	external: [...Object.keys(dependencies), ...Object.keys(peerDependencies)],
 
-  preserveEntrySignatures: false,
+	preserveEntrySignatures: false,
 
-  output: {
-    dir: "./dist",
-    format: "commonjs",
-    sourcemap: true,
-  },
-};
+	output: {
+		dir: "./dist",
+		format: "commonjs",
+		sourcemap: true,
+	},
+}
 
 // minify in production builds
-if (!isDev) config.plugins.push(terser());
+if (!isDev) config.plugins.push(terser())
 
-export default config;
+export default config

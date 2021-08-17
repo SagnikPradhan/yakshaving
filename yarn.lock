@@ -3029,6 +3029,7 @@ __metadata:
   dependencies:
     "@yakshaving/common": "workspace:packages/common"
     prettier: ^2.3.2
+    prettier-plugin-jsdoc: ^0.3.23
     typescript: ^4.3.4
   languageName: unknown
   linkType: soft
@@ -3895,6 +3896,13 @@ __metadata:
   version: 2.2.0
   resolution: "binary-extensions@npm:2.2.0"
   checksum: ccd267956c58d2315f5d3ea6757cf09863c5fc703e50fbeb13a7dc849b812ef76e3cf9ca8f35a0c48498776a7478d7b4a0418e1e2b8cb9cb9731f2922aaad7f8
+  languageName: node
+  linkType: hard
+
+"binary-search-bounds@npm:^2.0.5":
+  version: 2.0.5
+  resolution: "binary-search-bounds@npm:2.0.5"
+  checksum: e073e265570ad09fe7520835c620f1e95036c7e9696c4f2135c9b20f4b4a44e0306b38977e057b049dab60fea4ab53ed4ad2ee19d9bf44cb6b652aa081788b89
   languageName: node
   linkType: hard
 
@@ -4794,6 +4802,13 @@ __metadata:
   version: 7.2.0
   resolution: "commander@npm:7.2.0"
   checksum: 53501cbeee61d5157546c0bef0fedb6cdfc763a882136284bed9a07225f09a14b82d2a84e7637edfd1a679fb35ed9502fd58ef1d091e6287f60d790147f68ddc
+  languageName: node
+  linkType: hard
+
+"comment-parser@npm:^1.1.4":
+  version: 1.2.3
+  resolution: "comment-parser@npm:1.2.3"
+  checksum: a9f25823ef2c1e9494bcb881d8650046490e92d4fe96db8ff1da60a7684e8737783675b78c723b7c99368ab0cc1e9df5f70ab830124fcf37632b1fa12f4ed575
   languageName: node
   linkType: hard
 
@@ -10115,6 +10130,13 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
+"linguist-languages@npm:^7.13.0":
+  version: 7.15.0
+  resolution: "linguist-languages@npm:7.15.0"
+  checksum: 2f930295a291997ecf30219246f1bdb915ea53820f37410aacd0effb5a94ab6b1076ab35fa792899ac86b196ab0a9b2c40f2cc021817ccbecd4bd2efc45a1df1
+  languageName: node
+  linkType: hard
+
 "load-json-file@npm:^4.0.0":
   version: 4.0.0
   resolution: "load-json-file@npm:4.0.0"
@@ -10614,6 +10636,19 @@ fsevents@~2.3.2:
   dependencies:
     unist-util-visit: ^2.0.0
   checksum: 2325f20b82b3fb8cb5fda77038ee0bbdd44f82cfca7c48a854724b58bc1fe5919630a3ce7c45e210726df59d46c881d020b2da7a493bfd1ee36eb2bbfef5d78e
+  languageName: node
+  linkType: hard
+
+"mdast-util-from-markdown@npm:^0.8.5":
+  version: 0.8.5
+  resolution: "mdast-util-from-markdown@npm:0.8.5"
+  dependencies:
+    "@types/mdast": ^3.0.0
+    mdast-util-to-string: ^2.0.0
+    micromark: ~2.11.0
+    parse-entities: ^2.0.0
+    unist-util-stringify-position: ^2.0.0
+  checksum: 5a9d0d753a42db763761e874c22365d0c7c9934a5a18b5ff76a0643610108a208a041ffdb2f3d3dd1863d3d915225a4020a0aade282af0facfd0df110601eee6
   languageName: node
   linkType: hard
 
@@ -12832,6 +12867,20 @@ fsevents@~2.3.2:
   version: 2.0.0
   resolution: "prepend-http@npm:2.0.0"
   checksum: 7694a9525405447662c1ffd352fcb41b6410c705b739b6f4e3a3e21cf5fdede8377890088e8934436b8b17ba55365a615f153960f30877bf0d0392f9e93503ea
+  languageName: node
+  linkType: hard
+
+"prettier-plugin-jsdoc@npm:^0.3.23":
+  version: 0.3.23
+  resolution: "prettier-plugin-jsdoc@npm:0.3.23"
+  dependencies:
+    binary-search-bounds: ^2.0.5
+    comment-parser: ^1.1.4
+    linguist-languages: ^7.13.0
+    mdast-util-from-markdown: ^0.8.5
+  peerDependencies:
+    prettier: ">=2.1.2"
+  checksum: 167463d840d57e624c496ec5667217b95f3d9437a1e3c016cefb4316f1ae10ea01489c2301a81dee5eb94d7c1b66cc3020ed62f020c3d7180a8f583c0fb74c1b
   languageName: node
   linkType: hard
 

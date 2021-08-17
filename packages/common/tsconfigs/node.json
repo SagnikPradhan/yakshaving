@@ -1,11 +1,11 @@
 {
-  "$schema": "https://json.schemastore.org/tsconfig",
+	"$schema": "https://json.schemastore.org/tsconfig",
 
-  "compilerOptions": {
-    "module": "commonjs",
-    "sourceMap": true,
-    "noEmit": false
-  },
+	"compilerOptions": {
+		"module": "commonjs",
+		"sourceMap": true,
+		"noEmit": false
+	},
 
-  "extends": "./base.json"
+	"extends": "./base.json"
 }

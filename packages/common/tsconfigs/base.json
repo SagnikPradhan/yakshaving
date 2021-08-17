@@ -1,26 +1,26 @@
 {
-  "$schema": "https://json.schemastore.org/tsconfig",
+	"$schema": "https://json.schemastore.org/tsconfig",
 
-  "compilerOptions": {
-    "target": "esnext",
-    "lib": ["esnext"],
+	"compilerOptions": {
+		"target": "esnext",
+		"lib": ["esnext"],
 
-    "strict": true,
+		"strict": true,
 
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "noUncheckedIndexedAccess": true,
-    "noImplicitOverride": true,
-    "noPropertyAccessFromIndexSignature": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"noImplicitReturns": true,
+		"noFallthroughCasesInSwitch": true,
+		"noUncheckedIndexedAccess": true,
+		"noImplicitOverride": true,
+		"noPropertyAccessFromIndexSignature": true,
 
-    "moduleResolution": "node",
+		"moduleResolution": "node",
 
-    "esModuleInterop": true,
-    "noEmit": true,
+		"esModuleInterop": true,
+		"noEmit": true,
 
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
-  }
+		"skipLibCheck": true,
+		"forceConsistentCasingInFileNames": true
+	}
 }

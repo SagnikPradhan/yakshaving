@@ -1,11 +1,11 @@
 {
-  "extends": "@yakshaving/common/tsconfigs/node.json",
+	"extends": "@yakshaving/common/tsconfigs/node.json",
 
-  "compilerOptions": {
-    "module": "commonjs",
-    "rootDir": "source",
-    "outDir": "dist"
-  },
+	"compilerOptions": {
+		"module": "commonjs",
+		"rootDir": "source",
+		"outDir": "dist"
+	},
 
-  "references": [{ "path": ".." }]
+	"references": [{ "path": ".." }]
 }
