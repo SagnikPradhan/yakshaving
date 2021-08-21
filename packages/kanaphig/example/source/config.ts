@@ -4,11 +4,19 @@ import { utilities } from "@yakshaving/kanaphig/plugins/utilities"
 import { zod } from "@yakshaving/kanaphig/plugins/zod"
 
 export default new K({
-	plugins: [utilities(), sources(), zod()],
+	plugins: [
+		utilities(),
+		sources({ environmentVariablesPrefix: "EXAMPLE" }),
+		zod(),
+	],
 
-	schema: ({ env, chain, z, zod }) => ({
+	schema: ({ z, zod }) => ({
+		siteURL: zod(z.string()),
+		port: zod(z.number()),
+
 		discord: {
-			token: chain(env("DISCORD_TOKEN"), zod(z.string())),
+			token: zod(z.string()),
+			id: zod(z.string()),
 		},
 	}),
 })
