@@ -1,4 +1,4 @@
-import { Fn } from "../../types/basic"
+import { Fn } from "../types/basic"
 
 /**
  * Chains functions
