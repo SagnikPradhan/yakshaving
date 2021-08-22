@@ -20,6 +20,7 @@
 	"optionalDependencies": {
 		"dotenv": "^10.0.0",
 		"json5": "^2.2.0",
+		"levn": "^0.4.1",
 		"yaml": "^1.10.2"
 	},
 	"peerDependencies": {

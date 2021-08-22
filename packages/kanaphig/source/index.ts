@@ -1,7 +1,6 @@
-// locals
-import { Path, PathValue, flatten, Flatten } from "./helpers/flatten"
-import { Fn, RecursiveObject } from "./types/basic"
-import { deepMerge } from "./helpers/merge"
+import { flatten, Flatten, Path, PathValue } from "./core/helpers/flatten"
+import { deepMerge } from "./core/helpers/merge"
+import { Fn, RecursiveObject } from "./core/types/basic"
 
 export type ConfigurationStructure = RecursiveObject<Fn<unknown, any>>
 
