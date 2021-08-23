@@ -1,0 +1,13 @@
+{
+	"name": "@yakshaving/kanaphig-example",
+	"private": true,
+	"dependencies": {
+		"@yakshaving/kanaphig": "workspace:packages/kanaphig",
+		"zod": "^3.8.1"
+	},
+	"devDependencies": {
+		"@types/node": "^16.7.1",
+		"@yakshaving/common": "workspace:packages/common",
+		"typescript": "^4.3.5"
+	}
+}

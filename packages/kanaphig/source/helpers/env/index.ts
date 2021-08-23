@@ -1,13 +1,14 @@
-import { config, DotenvConfigOptions } from "dotenv"
-import { parse } from "levn"
-
-import { Fn } from "../../core/types/basic"
+import type { DotenvConfigOptions } from "dotenv"
+import type { Fn } from "../../core/types/basic"
 
 export function env(options?: {
 	prefix?: string | string[]
 	filter?: RegExp | Fn<string, boolean>
 	dotenv?: DotenvConfigOptions
 }) {
+	const { config }: typeof import("dotenv") = require("dotenv")
+	const { parse }: typeof import("levn") = require("levn")
+
 	config(options?.dotenv)
 
 	const filter = options?.filter || /.+/

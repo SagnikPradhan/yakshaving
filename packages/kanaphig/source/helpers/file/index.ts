@@ -3,7 +3,7 @@ import path from "path"
 
 import { RecursiveObject } from "../../core/types/basic"
 
-export function file(configPath: string): RecursiveObject<unknown> {
+export function file(configPath: string): RecursiveObject {
 	const absolutePath = path.isAbsolute(configPath)
 		? configPath
 		: path.join(process.cwd(), configPath)

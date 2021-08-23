@@ -1,4 +1,4 @@
-export interface RecursiveObject<Value> {
+export interface RecursiveObject<Value = unknown> {
 	[key: string]: Value | RecursiveObject<Value>
 }
 

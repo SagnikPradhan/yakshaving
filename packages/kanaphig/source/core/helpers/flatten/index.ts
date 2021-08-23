@@ -17,7 +17,7 @@ export type Path<T> = PathImpl2<T> extends string | keyof T
 
 export type PathValue<
 	T,
-	P extends Path<T>
+	P extends Path<T> | EndPath<T>
 > = P extends `${infer Key}.${infer Rest}`
 	? Key extends keyof T
 		? Rest extends Path<T[Key]>
@@ -28,16 +28,15 @@ export type PathValue<
 	? T[P]
 	: never
 
-export type Flatten<O extends RecursiveObject<unknown>> = {
-	[P in PathValue<O, Path<O>> extends RecursiveObject<unknown>
-		? Path<O>
-		: never]: PathValue<O, P>
+export type Flatten<O> = {
+	[P in Path<O> as PathValue<O, P> extends RecursiveObject
+		? never
+		: P]: PathValue<O, P>
 }
 
-export function flatten<O extends RecursiveObject<unknown>>(
-	object: O,
-	path = ""
-) {
+export type EndPath<O> = keyof Flatten<O>
+
+export function flatten<O extends RecursiveObject>(object: O, path = "") {
 	const flattened = {} as Flatten<O>
 
 	for (const [key, value] of Object.entries(object))
@@ -49,7 +48,7 @@ export function flatten<O extends RecursiveObject<unknown>>(
 		else
 			Object.assign(
 				flattened,
-				flatten(value as RecursiveObject<unknown>, `${path}${key}.`)
+				flatten(value as RecursiveObject, `${path}${key}.`)
 			)
 
 	return flattened

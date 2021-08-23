@@ -1,4 +1,4 @@
-import { z } from "zod"
+import type { z } from "zod"
 
 export function zod<Output, Def extends z.ZodTypeDef, Input = Output>(
 	schema:
@@ -7,5 +7,3 @@ export function zod<Output, Def extends z.ZodTypeDef, Input = Output>(
 ) {
 	return (input: unknown): Output => schema.parse(input)
 }
-
-export { z }

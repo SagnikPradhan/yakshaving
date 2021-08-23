@@ -1,17 +1,16 @@
 import { RecursiveObject } from "../../types/basic"
 
-type Merged<
-	Objects extends [RecursiveObject<unknown>] | RecursiveObject<unknown>[]
-> = Objects extends [infer OnlyOne]
-	? OnlyOne
-	: Objects extends [infer FirstOne, ...infer Rest]
-	? Rest extends [RecursiveObject<unknown>] | RecursiveObject<unknown>[]
-		? FirstOne & Merged<Rest>
-		: FirstOne
-	: Record<string, unknown>
+type Merged<Objects extends [RecursiveObject] | RecursiveObject[]> =
+	Objects extends [infer OnlyOne]
+		? OnlyOne
+		: Objects extends [infer FirstOne, ...infer Rest]
+		? Rest extends [RecursiveObject] | RecursiveObject[]
+			? FirstOne & Merged<Rest>
+			: FirstOne
+		: Record<string, unknown>
 
 export function deepMerge<
-	Objects extends [RecursiveObject<unknown>] | RecursiveObject<unknown>[]
+	Objects extends [RecursiveObject] | RecursiveObject[]
 >(...objects: Objects) {
 	const merged = {} as Merged<Objects>
 
@@ -44,5 +43,5 @@ export function deepMerge<
 	return merged
 }
 
-const isObject = (value: unknown): value is RecursiveObject<unknown> =>
+const isObject = (value: unknown): value is RecursiveObject =>
 	typeof value === "object" && !Array.isArray(value) && value !== null
