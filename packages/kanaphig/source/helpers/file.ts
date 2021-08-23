@@ -1,7 +1,7 @@
 import fs from "fs"
 import path from "path"
 
-import { RecursiveObject } from "../../core/types/basic"
+import { RecursiveObject } from "../core/types/basic"
 
 export function file(configPath: string): RecursiveObject {
 	const absolutePath = path.isAbsolute(configPath)

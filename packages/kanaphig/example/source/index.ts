@@ -2,7 +2,10 @@ import { z } from "zod"
 import { K, env, file, zod } from "@yakshaving/kanaphig"
 
 const configuration = new K({
-	sources: [env(), file("config.yml")],
+	sources: [
+		env({ prefix: "EXAMPLE__", filter: /(EXAMPLE__)./ }),
+		file("config.yml"),
+	],
 
 	structure: {
 		client: {
