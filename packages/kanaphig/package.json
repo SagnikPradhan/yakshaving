@@ -19,6 +19,9 @@
 		"test": "ava",
 		"test-watch": "ava --watch"
 	},
+	"dependencies": {
+		"@yakshaving/sundorerr": "workspace:packages/sundorerr"
+	},
 	"optionalDependencies": {
 		"dotenv": "^10.0.0",
 		"json5": "^2.2.0",

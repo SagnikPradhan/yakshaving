@@ -7,7 +7,7 @@ const configuration = new K({
 		file("config.yml"),
 	],
 
-	structure: {
+	definition: {
 		client: {
 			token: zod(z.string()),
 			id: zod(z.string()),

@@ -7,7 +7,7 @@ type Merged<Objects extends [RecursiveObject] | RecursiveObject[]> =
 		? Rest extends [RecursiveObject] | RecursiveObject[]
 			? FirstOne & Merged<Rest>
 			: FirstOne
-		: Record<string, unknown>
+		: RecursiveObject
 
 export function deepMerge<
 	Objects extends [RecursiveObject] | RecursiveObject[]

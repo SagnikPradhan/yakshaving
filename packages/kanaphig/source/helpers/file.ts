@@ -1,5 +1,6 @@
 import fs from "fs"
 import path from "path"
+import { KanaphigError } from "../core/helpers/error"
 
 import { RecursiveObject } from "../core/types/basic"
 
@@ -22,6 +23,11 @@ export function file(configPath: string): RecursiveObject {
 			return json.parse(fs.readFileSync(absolutePath, "utf8"))
 
 		default:
-			throw new Error("Invalid config file extension")
+			throw new KanaphigError("KanaphigFileError", {
+				isOperational: false,
+				message: "Unknown file extension received in file helper",
+				extension,
+				absolutePath,
+			})
 	}
 }

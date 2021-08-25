@@ -1,43 +1,53 @@
-import { EndPath, flatten, Flatten, PathValue } from "./core/helpers/flatten"
+import { handleError } from "./core/helpers/error"
+import { flatten, PathValue } from "./core/helpers/flatten"
 import { deepMerge } from "./core/helpers/merge"
 
 import type { Fn, RecursiveObject } from "./core/types/basic"
 import type {
 	ConfigurationDefinition,
-	ExtractShapeFromDefinition,
+	Configuration,
+	Keys,
 } from "./core/types/structure"
 
 /** Kanaphig manager */
 export class K<Definition extends ConfigurationDefinition> {
-	#configuration = new Map<
-		EndPath<ExtractShapeFromDefinition<Definition>>,
-		unknown
-	>()
+	private readonly configuration = new Map<string, unknown>()
 
 	/** Create new kanaphig manager */
 	constructor({
 		sources,
-		structure: schema,
+		definition,
+		exit,
 	}: {
 		sources: RecursiveObject[]
-		structure: Definition
+		definition: Definition
+		exit?: boolean
 	}) {
-		const source = flatten(deepMerge(...sources))
-		const structure = flatten(schema) as Record<string, Fn<unknown>>
-
-		for (const [key, transformer] of Object.entries(structure))
-			this.#configuration.set(
-				key as EndPath<ExtractShapeFromDefinition<Definition>>,
-				transformer(source[key as keyof Flatten<Record<string, unknown>>])
-			)
+		try {
+			this.init(sources, definition)
+		} catch (error) {
+			handleError(error, exit)
+		}
 	}
 
-	public get<P extends EndPath<ExtractShapeFromDefinition<Definition>>>(
-		path: P
-	) {
-		return this.#configuration.get(path) as PathValue<
-			ExtractShapeFromDefinition<Definition>,
-			P
+	private init(sources: RecursiveObject[], definition: Definition) {
+		const flattenedMergedSource = flatten(
+			deepMerge(...sources)
+		) as RecursiveObject
+
+		const flattenedDefinition = flatten(definition) as Record<
+			string,
+			Fn<unknown>
+		>
+
+		for (const [path, transformer] of Object.entries(flattenedDefinition))
+			this.configuration.set(path, transformer(flattenedMergedSource[path]))
+	}
+
+	public get<Path extends Keys<Definition>>(path: Path) {
+		return this.configuration.get(path as string) as PathValue<
+			Configuration<Definition>,
+			Path
 		>
 	}
 }

@@ -1,4 +1,5 @@
 import type { DotenvConfigOptions } from "dotenv"
+import { KanaphigError } from "../../core/helpers/error"
 import type { Fn } from "../../core/types/basic"
 
 export function env(options?: {
@@ -39,7 +40,11 @@ function removePrefix(prefix: undefined | string | string[], key: string) {
 		else return key
 	}
 
-	throw new Error("Prefix should be a string or array of strings")
+	throw new KanaphigError("KanaphigEnvError", {
+		isOperational: false,
+		prefix,
+		message: "Prefix should be a string or array of strings",
+	})
 }
 
 function toParts(string: string) {
