@@ -18,4 +18,4 @@ const configuration = new K({
 	},
 })
 
-console.log(configuration.get("client.token"))
+console.log(configuration.all())

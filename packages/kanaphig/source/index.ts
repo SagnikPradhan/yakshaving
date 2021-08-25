@@ -1,5 +1,5 @@
 import { handleError } from "./core/helpers/error"
-import { flatten, PathValue } from "./core/helpers/flatten"
+import { flatten, PathValue, unflatten } from "./core/helpers/flatten"
 import { deepMerge } from "./core/helpers/merge"
 
 import type { Fn, RecursiveObject } from "./core/types/basic"
@@ -13,7 +13,14 @@ import type {
 export class K<Definition extends ConfigurationDefinition> {
 	private readonly configuration = new Map<string, unknown>()
 
-	/** Create new kanaphig manager */
+	/**
+	 * Create new kanaphig manager
+	 *
+	 * @param options- Options
+	 * @param options.sources - Configuration sources. Look in helpers.
+	 * @param options.definition - Configuration definition
+	 * @param options.exit - Exit if configuration building fails. Default `true`
+	 */
 	constructor({
 		sources,
 		definition,
@@ -44,11 +51,28 @@ export class K<Definition extends ConfigurationDefinition> {
 			this.configuration.set(path, transformer(flattenedMergedSource[path]))
 	}
 
+	/**
+	 * Get a configuration key
+	 *
+	 * @param path - Path to configuration key
+	 * @returns Value
+	 */
 	public get<Path extends Keys<Definition>>(path: Path) {
 		return this.configuration.get(path as string) as PathValue<
 			Configuration<Definition>,
 			Path
 		>
+	}
+
+	/**
+	 * Get the complete configuration as an object
+	 *
+	 * @returns Configuration
+	 */
+	public all() {
+		return unflatten(
+			Object.fromEntries(this.configuration.entries())
+		) as Configuration<Definition>
 	}
 }
 
