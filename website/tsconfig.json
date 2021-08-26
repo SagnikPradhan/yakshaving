@@ -1,9 +1,11 @@
 {
-  "extends": "../tsconfig.json",
+	"extends": "@yakshaving/common/tsconfigs/base.json",
 
-  "compilerOptions": {
-    "lib": ["esnext", "dom"],
-    "module": "esnext",
-    "rootDir": "src"
-  }
+	"compilerOptions": {
+		"module": "esnext",
+		"lib": ["esnext", "dom"],
+		"jsx": "preserve"
+	},
+
+	"include": ["src"]
 }

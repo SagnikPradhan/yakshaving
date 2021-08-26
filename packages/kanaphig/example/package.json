@@ -1,0 +1,17 @@
+{
+	"name": "@yakshaving/kanaphig-example",
+	"private": true,
+	"scripts": {
+		"start": "ts-node ./source/index.ts"
+	},
+	"dependencies": {
+		"@yakshaving/kanaphig": "workspace:packages/kanaphig",
+		"zod": "^3.8.1"
+	},
+	"devDependencies": {
+		"@types/node": "^16.7.1",
+		"@yakshaving/common": "workspace:packages/common",
+		"ts-node": "^10.2.1",
+		"typescript": "^4.3.5"
+	}
+}

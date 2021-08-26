@@ -1,7 +1,11 @@
 {
-  "extends": "../../tsconfig.json",
+	"extends": "@yakshaving/common/tsconfigs/node.json",
 
-  "compilerOptions": {
-    "module": "commonjs"
-  }
+	"compilerOptions": {
+		"rootDir": "source",
+		"outDir": "dist",
+		"declaration": true
+	},
+
+	"include": ["source"]
 }

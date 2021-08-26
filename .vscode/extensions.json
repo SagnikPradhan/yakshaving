@@ -1,8 +1,9 @@
 {
-  "recommendations": [
-    "arcanis.vscode-zipfs",
-    "jpoissonnier.vscode-styled-components",
-    "vivaxy.vscode-conventional-commits",
-    "dbaeumer.vscode-eslint"
-  ]
+	"recommendations": [
+		"arcanis.vscode-zipfs",
+		"jpoissonnier.vscode-styled-components",
+		"vivaxy.vscode-conventional-commits",
+		"dbaeumer.vscode-eslint",
+		"esbenp.prettier-vscode"
+	]
 }

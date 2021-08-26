@@ -1,49 +1,49 @@
 {
-  "name": "bundte",
-  "version": "0.0.0",
-  "bin": "./dist/main.js",
-  "scripts": {
-    "build": "rollup -c",
-    "dev": "rollup -c -w"
-  },
-  "dependencies": {
-    "@babel/core": "^7.14.6",
-    "@babel/preset-env": "^7.14.7",
-    "@babel/preset-stage-3": "^7.8.3",
-    "@babel/runtime": "^7.14.6",
-    "@rollup/plugin-babel": "^5.3.0",
-    "@rollup/plugin-commonjs": "^19.0.0",
-    "@rollup/plugin-json": "^4.1.0",
-    "@rollup/plugin-node-resolve": "^13.0.0",
-    "chokidar": "^3.5.2",
-    "clipanion": "^3.0.0-rc.12",
-    "core-js": "^3.15.2",
-    "ink": "^3.0.8",
-    "react": "16",
-    "rollup": "^2.52.3",
-    "rollup-plugin-terser": "^7.0.2",
-    "rollup-plugin-ts": "^1.4.0",
-    "typanion": "^3.3.1"
-  },
-  "peerDependencies": {
-    "typescript": "*"
-  },
-  "peerDependenciesMeta": {
-    "typescript": {
-      "optional": true
-    }
-  },
-  "devDependencies": {
-    "@schemastore/package": "^0.0.6",
-    "@types/babel__core": "^7.1.14",
-    "@types/babel__preset-env": "^7.9.1",
-    "@types/node": "^15.12.5",
-    "@types/react": "16",
-    "typescript": "^4.3.4"
-  },
-  "license": "MIT",
-  "author": {
-    "name": "Sagnik Pradhan",
-    "url": "https://github.com/SagnikPradhan"
-  }
+	"name": "bundte",
+	"version": "0.0.0",
+	"bin": "./dist/main.js",
+	"scripts": {
+		"build": "rollup -c",
+		"dev": "rollup -c -w"
+	},
+	"dependencies": {
+		"@babel/core": "^7.14.6",
+		"@babel/preset-env": "^7.14.7",
+		"@babel/preset-stage-3": "^7.8.3",
+		"@babel/runtime": "^7.14.6",
+		"@rollup/plugin-babel": "^5.3.0",
+		"@rollup/plugin-commonjs": "^19.0.0",
+		"@rollup/plugin-json": "^4.1.0",
+		"@rollup/plugin-node-resolve": "^13.0.0",
+		"chokidar": "^3.5.2",
+		"clipanion": "^3.0.0-rc.12",
+		"core-js": "^3.15.2",
+		"ink": "^3.0.8",
+		"react": "16",
+		"rollup": "^2.52.3",
+		"rollup-plugin-terser": "^7.0.2",
+		"rollup-plugin-ts": "^1.4.0",
+		"typanion": "^3.3.1"
+	},
+	"peerDependencies": {
+		"typescript": "*"
+	},
+	"peerDependenciesMeta": {
+		"typescript": {
+			"optional": true
+		}
+	},
+	"devDependencies": {
+		"@schemastore/package": "^0.0.6",
+		"@types/babel__core": "^7.1.14",
+		"@types/babel__preset-env": "^7.9.1",
+		"@types/node": "^15.12.5",
+		"@types/react": "16",
+		"typescript": "^4.3.4"
+	},
+	"license": "MIT",
+	"author": {
+		"name": "Sagnik Pradhan",
+		"url": "https://github.com/SagnikPradhan"
+	}
 }

@@ -7,16 +7,16 @@ import { WatchCommand } from "./core/watch/command"
 import { handleError } from "./utils/error"
 
 // main entry point
-async function main () {
-  const cli = new Cli({
-    binaryLabel: name,
-    binaryName: name,
-    binaryVersion: version,
-  })
+async function main() {
+	const cli = new Cli({
+		binaryLabel: name,
+		binaryName: name,
+		binaryVersion: version,
+	})
 
-  cli.register( WatchCommand )
+	cli.register(WatchCommand)
 
-  cli.run( process.argv.slice( 2 ), Cli.defaultContext )
+	cli.run(process.argv.slice(2), Cli.defaultContext)
 }
 
-main().catch( handleError() )
+main().catch(handleError())
