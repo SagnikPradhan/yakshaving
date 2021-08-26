@@ -1,3 +1,4 @@
 {
-	"name": "@yakshaving/common"
+	"name": "@yakshaving/common",
+	"private": true
 }
