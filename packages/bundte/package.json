@@ -39,7 +39,7 @@
 		"@types/babel__preset-env": "^7.9.1",
 		"@types/node": "^15.12.5",
 		"@types/react": "16",
-		"typescript": "^4.3.4"
+		"typescript": "^4.4.3"
 	},
 	"license": "MIT",
 	"author": {
