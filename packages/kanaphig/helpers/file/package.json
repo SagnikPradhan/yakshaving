@@ -1,0 +1,23 @@
+{
+	"name": "@kanaphig/file",
+	"main": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"scripts": {
+		"build": "tsc",
+		"watch": "tsc -w"
+	},
+	"optionalDependencies": {
+		"json5": "^2.2.0",
+		"levn": "^0.4.1",
+		"yaml": "^1.10.2"
+	},
+	"peerDependencies": {
+		"@kanaphig/core": "workspace:^"
+	},
+	"devDependencies": {
+		"@kanaphig/core": "workspace:^",
+		"@types/node": "^16.11.7",
+		"@yakshaving/common": "workspace:packages/common",
+		"typescript": "4.4.4"
+	}
+}

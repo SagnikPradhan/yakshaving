@@ -1,16 +1,23 @@
+import { parse } from "levn"
 import type { DotenvConfigOptions } from "dotenv"
-import { KanaphigError } from "../../core/helpers/error"
-import type { Fn } from "../../core/types/basic"
+import type { Fn } from "@kanaphig/core/dist/types/basic"
+import { KanaphigError } from "@kanaphig/core"
 
+/**
+ * Use envrionment variables
+ *
+ * @param options - Env source options
+ * @param options.removePrefix - Prefix to be removed from environment variables
+ * @param options.filter - Environment variables to be filtered
+ * @param options.dotenv - Options for dotenv, pass `false` to prevent loading dotenv
+ */
 export function env(options?: {
-	prefix?: string | string[]
+	removePrefix?: string | string[]
 	filter?: RegExp | Fn<string, boolean>
 	dotenv?: DotenvConfigOptions
 }) {
-	const { config }: typeof import("dotenv") = require("dotenv")
-	const { parse }: typeof import("levn") = require("levn")
-
-	config(options?.dotenv)
+	if (options?.dotenv === undefined || options.dotenv !== false)
+		(require("dotenv") as typeof import("dotenv")).config(options?.dotenv)
 
 	const filter = options?.filter || /.+/
 	const filterFn =
@@ -19,7 +26,7 @@ export function env(options?: {
 	const env = Object.entries(process.env)
 		.filter(([key]) => filterFn(key))
 		.map(([key, value]) => [
-			toCamelCase(toParts(removePrefix(options?.prefix, key))),
+			toCamelCase(toParts(removePrefix(options?.removePrefix, key))),
 			value ? parse("*", value) : value,
 		])
 

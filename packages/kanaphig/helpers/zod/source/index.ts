@@ -1,6 +1,11 @@
 import type { z } from "zod"
-import { KanaphigError } from "../core/helpers/error"
+import { KanaphigError } from "@kanaphig/core"
 
+/**
+ * Use zod to describe configuration fields
+ *
+ * @param schema - Zod schema
+ */
 export function zod<Output, Def extends z.ZodTypeDef, Input = Output>(
 	schema:
 		| z.ZodType<Output, Def, Input>

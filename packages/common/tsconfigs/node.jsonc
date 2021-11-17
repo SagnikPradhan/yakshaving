@@ -3,8 +3,8 @@
 
 	"compilerOptions": {
 		"module": "commonjs",
-		"sourceMap": true,
-		"noEmit": false
+		"moduleResolution": "node",
+		"sourceMap": true
 	},
 
 	"extends": "./base.json"

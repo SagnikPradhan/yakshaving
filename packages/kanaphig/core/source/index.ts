@@ -1,13 +1,14 @@
-import { handleError } from "./core/helpers/error"
-import { flatten, PathValue, unflatten } from "./core/helpers/flatten"
-import { deepMerge } from "./core/helpers/merge"
+import { handleError } from "./helpers/error"
+import { flatten, PathValue, unflatten } from "./helpers/flatten"
+import { deepMerge } from "./helpers/merge"
 
-import type { Fn, RecursiveObject } from "./core/types/basic"
+import type { Fn, RecursiveObject } from "./types/basic"
+import type { Chain, FirstArgument, LastReturn } from "./types/chain"
 import type {
 	ConfigurationDefinition,
 	Configuration,
 	Keys,
-} from "./core/types/structure"
+} from "./types/structure"
 
 /** Kanaphig manager */
 export class K<Definition extends ConfigurationDefinition> {
@@ -33,7 +34,7 @@ export class K<Definition extends ConfigurationDefinition> {
 		try {
 			this.init(sources, definition)
 		} catch (error) {
-			handleError(error, exit)
+			handleError(error as Error, exit)
 		}
 	}
 
@@ -74,6 +75,13 @@ export class K<Definition extends ConfigurationDefinition> {
 			Object.fromEntries(this.configuration.entries())
 		) as Configuration<Definition>
 	}
+
+	public chain<Fns extends Chain<Fn[] | [Fn]>>(
+		...fns: Fns
+	): (argument: FirstArgument<Fns>) => LastReturn<Fns> {
+		return (value: FirstArgument<Fns>) =>
+			fns.reduce((value, fn) => fn(value), value as LastReturn<Fns>)
+	}
 }
 
-export * from "./helpers"
+export { KanaphigError } from "./helpers/error"

@@ -36,20 +36,21 @@ export type Flatten<O> = {
 
 export type EndPath<O> = keyof Flatten<O>
 
+function isObject(value: unknown): value is RecursiveObject {
+	return typeof value === "object" && value !== null && !Array.isArray(value)
+}
+
 export function flatten<O extends RecursiveObject>(object: O, path = "") {
 	const flattened = {} as Flatten<O>
 
 	for (const [key, value] of Object.entries(object))
-		if (typeof value !== "object" || value === null)
+		if (isObject(value))
+			Object.assign(flattened, flatten(value, `${path}${key}.`))
+		else
 			flattened[`${path}${key}` as keyof Flatten<O>] = value as PathValue<
 				O,
 				Path<O>
 			>
-		else
-			Object.assign(
-				flattened,
-				flatten(value as RecursiveObject, `${path}${key}.`)
-			)
 
 	return flattened
 }
@@ -69,8 +70,7 @@ export function unflatten<O extends Record<string, unknown>>(object: O) {
 		const object = parts.reduce((object, part, idx) => {
 			if (idx === parts.length - 1) return object
 
-			if (typeof object[part] !== "object" || object[part] === null)
-				object[part] = {}
+			if (!isObject(object[part])) object[part] = {}
 
 			return object[part] as Record<string, unknown>
 		}, result as Record<string, unknown>)

@@ -5,7 +5,5 @@
 		"rootDir": "source",
 		"outDir": "dist",
 		"declaration": true
-	},
-
-	"include": ["source"]
+	}
 }

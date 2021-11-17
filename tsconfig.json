@@ -1,3 +1,7 @@
 {
-	"extends": "@yakshaving/common/tsconfigs/base.json"
+	"extends": "@yakshaving/common/tsconfigs/base.jsonc",
+
+	"compilerOptions": {
+		"noEmit": true
+	}
 }

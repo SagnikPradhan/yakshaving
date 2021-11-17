@@ -1,9 +1,16 @@
 import fs from "fs"
 import path from "path"
-import { KanaphigError } from "../core/helpers/error"
+import { KanaphigError } from "@kanaphig/core"
+import { RecursiveObject } from "@kanaphig/core/dist/types/basic"
 
-import { RecursiveObject } from "../core/types/basic"
-
+/**
+ * Load a configuration file. Supported file extensions -
+ *
+ * - YAML - yml, yaml
+ * - JSON - json, json5
+ *
+ * @param configPath - Configuration file path
+ */
 export function file(configPath: string): RecursiveObject {
 	const absolutePath = path.isAbsolute(configPath)
 		? configPath

@@ -1,9 +1,11 @@
 import { z } from "zod"
-import { K, env, file, zod } from "@yakshaving/kanaphig"
+
+import { K } from "@yakshaving/kanaphig"
+import {} from "@yakshaving/kanaphig/helpers/env"
 
 const configuration = new K({
 	sources: [
-		env({ prefix: "EXAMPLE__", filter: /(EXAMPLE__)./ }),
+		env({ removePrefix: "EXAMPLE__", filter: /(EXAMPLE__)./ }),
 		file("config.yml"),
 	],
 

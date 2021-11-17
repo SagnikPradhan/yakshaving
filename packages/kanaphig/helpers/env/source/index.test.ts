@@ -17,7 +17,7 @@ test.serial("filter and prefix", (t) => {
 		APP__WEBSITE_URL: "url",
 	}
 
-	t.deepEqual(env({ filter: /(APP__).+/, prefix: "APP__" }), {
+	t.deepEqual(env({ filter: /(APP__).+/, removePrefix: "APP__" }), {
 		clientToken: "client-token",
 		websiteUrl: "url",
 	})

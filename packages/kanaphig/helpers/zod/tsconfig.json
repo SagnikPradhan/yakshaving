@@ -1,0 +1,11 @@
+{
+	"extends": "@yakshaving/common/tsconfigs/node.jsonc",
+
+	"compilerOptions": {
+		"rootDir": "source",
+		"outDir": "dist",
+		"declaration": true
+	},
+
+	"include": ["source"]
+}
