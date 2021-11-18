@@ -76,6 +76,12 @@ export class K<Definition extends ConfigurationDefinition> {
 		) as Configuration<Definition>
 	}
 
+	/**
+	 * Creates a chain of functions
+	 *
+	 * @param fns - Functions
+	 * @returns Piped function
+	 */
 	public chain<Fns extends Chain<Fn[] | [Fn]>>(
 		...fns: Fns
 	): (argument: FirstArgument<Fns>) => LastReturn<Fns> {

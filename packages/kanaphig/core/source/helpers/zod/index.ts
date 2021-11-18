@@ -1,5 +1,5 @@
 import type { z } from "zod"
-import { KanaphigError } from "@kanaphig/core"
+import { KanaphigError } from "../.."
 
 /**
  * Use zod to describe configuration fields

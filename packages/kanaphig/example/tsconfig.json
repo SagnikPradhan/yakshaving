@@ -1,8 +1,0 @@
-{
-	"extends": "@yakshaving/common/tsconfig.node.json",
-
-	"compilerOptions": {
-		"rootDir": "source",
-		"outDir": "dist"
-	}
-}

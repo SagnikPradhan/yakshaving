@@ -1,7 +1,7 @@
 import fs from "fs"
 import path from "path"
-import { KanaphigError } from "@kanaphig/core"
-import { RecursiveObject } from "@kanaphig/core/dist/types/basic"
+import { KanaphigError } from "../.."
+import { RecursiveObject } from "../../types/basic"
 
 /**
  * Load a configuration file. Supported file extensions -

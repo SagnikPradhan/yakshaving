@@ -1,7 +1,7 @@
 import { parse } from "levn"
 import type { DotenvConfigOptions } from "dotenv"
-import type { Fn } from "@kanaphig/core/dist/types/basic"
-import { KanaphigError } from "@kanaphig/core"
+import type { Fn } from "../../types/basic"
+import { KanaphigError } from "../.."
 
 /**
  * Use envrionment variables
