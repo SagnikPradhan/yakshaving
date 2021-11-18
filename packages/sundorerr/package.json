@@ -1,8 +1,13 @@
 {
-	"name": "@yakshaving/sundorerr",
-	"version": "0.0.0",
+	"name": "sundorerr",
+	"description": "Beautiful errors",
+	"version": "0.0.0-dev.1",
+	"repository": "https://github.com/SagnikPradhan/yakshaving",
 	"types": "./dist/index.d.ts",
 	"main": "./dist/index.js",
+	"files": [
+		"./dist"
+	],
 	"scripts": {
 		"watch": "tsc -w",
 		"build": "tsc"

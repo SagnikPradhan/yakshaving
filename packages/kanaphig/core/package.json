@@ -1,8 +1,11 @@
 {
-	"name": "@yakshaving/kanaphig",
-	"version": "0.0.0",
+	"name": "kanaphig",
+	"version": "2.0.0-dev.1",
 	"main": "./dist/index.js",
 	"types": "./dist/index.d.ts",
+	"files": [
+		"./dist"
+	],
 	"scripts": {
 		"watch": "tsc -w",
 		"build": "tsc",
@@ -10,7 +13,7 @@
 		"test-watch": "ava --watch"
 	},
 	"dependencies": {
-		"@yakshaving/sundorerr": "workspace:packages/sundorerr"
+		"sundorerr": "workspace:packages/sundorerr"
 	},
 	"optionalDependencies": {
 		"dotenv": "^10.0.0",

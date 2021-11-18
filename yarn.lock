@@ -3878,51 +3878,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@yakshaving/kanaphig-example@workspace:packages/kanaphig/example":
-  version: 0.0.0-use.local
-  resolution: "@yakshaving/kanaphig-example@workspace:packages/kanaphig/example"
-  dependencies:
-    "@types/node": ^16.7.1
-    "@yakshaving/common": "workspace:packages/common"
-    "@yakshaving/kanaphig": "workspace:^"
-    ts-node: ^10.4.0
-    typescript: 4.4.4
-    zod: ^3.11.6
-  languageName: unknown
-  linkType: soft
-
-"@yakshaving/kanaphig@workspace:^, @yakshaving/kanaphig@workspace:packages/kanaphig/core":
-  version: 0.0.0-use.local
-  resolution: "@yakshaving/kanaphig@workspace:packages/kanaphig/core"
-  dependencies:
-    "@types/node": ^14.14.41
-    "@yakshaving/common": "workspace:packages/common"
-    "@yakshaving/sundorerr": "workspace:packages/sundorerr"
-    ava: ^3.15.0
-    dotenv: ^10.0.0
-    json5: ^2.2.0
-    levn: ^0.4.1
-    ts-node: ^10.4.0
-    typescript: 4.4.4
-    yaml: ^1.10.2
-    zod: ^3.11.6
-  peerDependencies:
-    zod: ^3.11.6
-  dependenciesMeta:
-    dotenv:
-      optional: true
-    json5:
-      optional: true
-    levn:
-      optional: true
-    yaml:
-      optional: true
-  peerDependenciesMeta:
-    zod:
-      optional: true
-  languageName: unknown
-  linkType: soft
-
 "@yakshaving/root@workspace:.":
   version: 0.0.0-use.local
   resolution: "@yakshaving/root@workspace:."
@@ -3930,21 +3885,6 @@ __metadata:
     "@yakshaving/common": "workspace:packages/common"
     prettier: ^2.4.1
     prettier-plugin-jsdoc: ^0.3.29
-    typescript: 4.4.4
-  languageName: unknown
-  linkType: soft
-
-"@yakshaving/sundorerr@workspace:packages/sundorerr":
-  version: 0.0.0-use.local
-  resolution: "@yakshaving/sundorerr@workspace:packages/sundorerr"
-  dependencies:
-    "@types/dedent": ^0
-    "@types/node": ^16.7.1
-    "@yakshaving/common": "workspace:packages/common"
-    chalk: ^4.1.2
-    fmt-obj: ^2.0.0
-    stacktracey: ^2.1.7
-    ts-dedent: ^2.2.0
     typescript: 4.4.4
   languageName: unknown
   linkType: soft
@@ -11210,6 +11150,38 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
+"kanaphig@workspace:packages/kanaphig/core":
+  version: 0.0.0-use.local
+  resolution: "kanaphig@workspace:packages/kanaphig/core"
+  dependencies:
+    "@types/node": ^14.14.41
+    "@yakshaving/common": "workspace:packages/common"
+    ava: ^3.15.0
+    dotenv: ^10.0.0
+    json5: ^2.2.0
+    levn: ^0.4.1
+    sundorerr: "workspace:packages/sundorerr"
+    ts-node: ^10.4.0
+    typescript: 4.4.4
+    yaml: ^1.10.2
+    zod: ^3.11.6
+  peerDependencies:
+    zod: ^3.11.6
+  dependenciesMeta:
+    dotenv:
+      optional: true
+    json5:
+      optional: true
+    levn:
+      optional: true
+    yaml:
+      optional: true
+  peerDependenciesMeta:
+    zod:
+      optional: true
+  languageName: unknown
+  linkType: soft
+
 "keyv@npm:^3.0.0":
   version: 3.1.0
   resolution: "keyv@npm:3.1.0"
@@ -16615,6 +16587,21 @@ resolve@^2.0.0-next.3:
   checksum: bacff1f18a8ab8dba345cc1f3cf3a02b4cc571f71585df79af95af31278f56107f7c29402f5347b07c489888c63f2deb78d544b93a6347e83d0ed0847f4bc163
   languageName: node
   linkType: hard
+
+"sundorerr@workspace:packages/sundorerr":
+  version: 0.0.0-use.local
+  resolution: "sundorerr@workspace:packages/sundorerr"
+  dependencies:
+    "@types/dedent": ^0
+    "@types/node": ^16.7.1
+    "@yakshaving/common": "workspace:packages/common"
+    chalk: ^4.1.2
+    fmt-obj: ^2.0.0
+    stacktracey: ^2.1.7
+    ts-dedent: ^2.2.0
+    typescript: 4.4.4
+  languageName: unknown
+  linkType: soft
 
 "supertap@npm:^2.0.0":
   version: 2.0.0
