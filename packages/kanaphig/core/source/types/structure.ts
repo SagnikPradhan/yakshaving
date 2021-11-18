@@ -1,4 +1,4 @@
-import { EndPath } from "../helpers/flatten"
+import { EndPath } from "../internal-helpers/flatten"
 import { Fn, RecursiveObject } from "./basic"
 
 export type ConfigurationDefinition = RecursiveObject<Fn<unknown, any>>

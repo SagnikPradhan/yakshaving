@@ -7,5 +7,5 @@
 		"sourceMap": true
 	},
 
-	"extends": "./base.json"
+	"extends": "./tsconfig.base.json"
 }

@@ -1,6 +1,6 @@
-import { handleError } from "./helpers/error"
-import { flatten, PathValue, unflatten } from "./helpers/flatten"
-import { deepMerge } from "./helpers/merge"
+import { handleError } from "./internal-helpers/error"
+import { flatten, PathValue, unflatten } from "./internal-helpers/flatten"
+import { deepMerge } from "./internal-helpers/merge"
 
 import type { Fn, RecursiveObject } from "./types/basic"
 import type { Chain, FirstArgument, LastReturn } from "./types/chain"
@@ -84,4 +84,4 @@ export class K<Definition extends ConfigurationDefinition> {
 	}
 }
 
-export { KanaphigError } from "./helpers/error"
+export { KanaphigError } from "./internal-helpers/error"

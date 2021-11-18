@@ -1,5 +1,5 @@
 {
-	"extends": "@yakshaving/common/tsconfigs/node.json",
+	"extends": "@yakshaving/common/tsconfig.node.json",
 
 	"compilerOptions": {
 		"rootDir": "source",

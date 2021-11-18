@@ -1,5 +1,5 @@
 {
-	"extends": "@yakshaving/common/tsconfigs/base.json",
+	"extends": "@yakshaving/common/tsconfig.node.json",
 
 	"compilerOptions": {
 		"module": "esnext",
