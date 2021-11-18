@@ -1,5 +1,5 @@
 {
-	"name": "@kanaphig/core",
+	"name": "@yakshaving/kanaphig",
 	"version": "0.0.0",
 	"main": "./dist/index.js",
 	"types": "./dist/index.d.ts",
@@ -12,12 +12,27 @@
 	"dependencies": {
 		"@yakshaving/sundorerr": "workspace:packages/sundorerr"
 	},
+	"optionalDependencies": {
+		"dotenv": "^10.0.0",
+		"json5": "^2.2.0",
+		"levn": "^0.4.1",
+		"yaml": "^1.10.2"
+	},
+	"peerDependencies": {
+		"zod": "^3.11.6"
+	},
+	"peerDependenciesMeta": {
+		"zod": {
+			"optional": true
+		}
+	},
 	"devDependencies": {
 		"@types/node": "^14.14.41",
 		"@yakshaving/common": "workspace:packages/common",
 		"ava": "^3.15.0",
 		"ts-node": "^10.4.0",
-		"typescript": "4.4.4"
+		"typescript": "4.4.4",
+		"zod": "^3.11.6"
 	},
 	"ava": {
 		"environmentVariables": {

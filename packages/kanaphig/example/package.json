@@ -1,11 +1,11 @@
 {
-	"name": "@kanaphig/example",
+	"name": "@yakshaving/kanaphig-example",
 	"private": true,
 	"scripts": {
 		"start": "ts-node ./source/index.ts"
 	},
 	"dependencies": {
-		"@kanaphig/core": "workspace:packages/kanaphig/core",
+		"@yakshaving/kanaphig": "workspace:^",
 		"zod": "^3.11.6"
 	},
 	"devDependencies": {
