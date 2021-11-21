@@ -1,6 +1,6 @@
 {
 	"name": "kanaphig",
-	"version": "2.0.0-dev.2",
+	"version": "2.0.0-dev.3",
 	"main": "./dist/index.js",
 	"types": "./dist/index.d.ts",
 	"files": [
@@ -10,7 +10,8 @@
 		"watch": "tsc -w",
 		"build": "tsc",
 		"test": "ava",
-		"test-watch": "ava --watch"
+		"test-watch": "ava --watch",
+		"prepublish": "yarn test && yarn build"
 	},
 	"dependencies": {
 		"sundorerr": "workspace:packages/sundorerr"
