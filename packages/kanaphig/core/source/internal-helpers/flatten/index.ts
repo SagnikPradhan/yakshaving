@@ -1,31 +1,28 @@
 import { RecursiveObject } from "../../types/basic"
 
-type PathImpl<T, Key extends keyof T> = Key extends string
-	? T[Key] extends Record<string, any>
-		?
-				| `${Key}.${PathImpl<T[Key], Exclude<keyof T[Key], keyof any[]>> &
-						string}`
-				| `${Key}.${Exclude<keyof T[Key], keyof any[]> & string}`
+export type Path<O> = O extends RecursiveObject
+	? {
+			[K in keyof O]: K extends string
+				? O[K] extends RecursiveObject
+					? `${K}.${Path<O[K]>}`
+					: K
+				: ""
+	  } extends infer M
+		? M[keyof M]
 		: never
-	: never
-
-type PathImpl2<T> = PathImpl<T, keyof T> | keyof T
-
-export type Path<T> = PathImpl2<T> extends string | keyof T
-	? PathImpl2<T>
-	: keyof T
+	: ""
 
 export type PathValue<
-	T,
-	P extends Path<T> | EndPath<T>
+	O,
+	P extends Path<O> | EndPath<O>
 > = P extends `${infer Key}.${infer Rest}`
-	? Key extends keyof T
-		? Rest extends Path<T[Key]>
-			? PathValue<T[Key], Rest>
+	? Key extends keyof O
+		? Rest extends Path<O[Key]>
+			? PathValue<O[Key], Rest>
 			: never
 		: never
-	: P extends keyof T
-	? T[P]
+	: P extends keyof O
+	? O[P]
 	: never
 
 export type Flatten<O> = {
