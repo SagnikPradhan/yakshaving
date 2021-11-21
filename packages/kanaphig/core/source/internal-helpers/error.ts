@@ -1,5 +1,5 @@
 import { RecursiveObject } from "../types/basic"
-import { SundorError } from "@yakshaving/sundorerr"
+import { SundorError } from "sundorerr"
 
 export interface Details extends RecursiveObject {
 	message: string
