@@ -47,6 +47,9 @@
 		],
 		"require": [
 			"ts-node/register"
+		],
+		"files": [
+			"./source/**/*.test.ts"
 		]
 	}
 }
