@@ -1,6 +1,6 @@
 {
 	"name": "bundte",
-	"version": "0.0.0",
+	"private": true,
 	"bin": "./dist/main.js",
 	"scripts": {
 		"build": "rollup -c",
