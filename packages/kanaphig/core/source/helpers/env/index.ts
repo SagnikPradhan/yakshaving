@@ -23,11 +23,19 @@ export function env(options?: {
 	const filterFn =
 		typeof filter === "function" ? filter : (key: string) => filter.test(key)
 
+	const tryParsing = (input: string) => {
+		try {
+			return parse("*", input)
+		} catch {
+			return input
+		}
+	}
+
 	const env = Object.entries(process.env)
 		.filter(([key]) => filterFn(key))
 		.map(([key, value]) => [
 			toCamelCase(toParts(removePrefix(options?.removePrefix, key))),
-			value ? parse("*", value) : value,
+			value ? tryParsing(value) : value,
 		])
 
 	return Object.fromEntries(env) as Record<string, unknown>
