@@ -1,13 +1,19 @@
 {
-	"search.exclude": {
-		"**/.yarn": true,
-		"**/.pnp.*": true
-	},
-	"typescript.enablePromptUseWorkspaceTsdk": true,
-	"typescript.tsdk": ".yarn/sdks/typescript/lib",
-	"prettier.prettierPath": ".yarn/sdks/prettier/index.js",
-	"conventionalCommits.scopes": ["kanaphig", "sundorerr", "website"],
-	"files.associations": {
-		"tsconfig.*.json": "jsonc"
-	}
+  "search.exclude": {
+    "**/.yarn": true,
+    "**/.pnp.*": true
+  },
+
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "typescript.tsdk": "node_modules\\typescript\\lib",
+
+  "conventionalCommits.scopes": [
+    "kanaphig",
+    "sundorerr",
+    "website"
+  ],
+  
+  "files.associations": {
+    "tsconfig.*.json": "jsonc"
+  }
 }

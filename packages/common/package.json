@@ -2,6 +2,6 @@
 	"name": "@yakshaving/common",
 	"private": true,
 	"devDependencies": {
-		"typescript": "4.4.4"
+		"typescript": "latest"
 	}
 }

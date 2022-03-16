@@ -13,15 +13,15 @@
 		"build": "tsc"
 	},
 	"dependencies": {
-		"chalk": "^4.1.2",
+		"chalk": "4.x",
 		"fmt-obj": "^2.0.0",
-		"stacktracey": "^2.1.7",
+		"stacktracey": "^2.1.8",
 		"ts-dedent": "^2.2.0"
 	},
 	"devDependencies": {
 		"@types/dedent": "^0",
 		"@types/node": "^16.7.1",
 		"@yakshaving/common": "workspace:packages/common",
-		"typescript": "4.4.4"
+		"typescript": "latest"
 	}
 }
