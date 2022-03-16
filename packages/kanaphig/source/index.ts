@@ -1,13 +1,19 @@
 import { handleError } from "./internal-helpers/error"
-import { flatten, PathValue, unflatten } from "./internal-helpers/flatten"
+import {
+	EndPath,
+	flatten,
+	PathValue,
+	unflatten,
+} from "./internal-helpers/flatten"
 import { deepMerge } from "./internal-helpers/merge"
 
 import type { Fn, RecursiveObject } from "./types/basic"
 import type { Chain, FirstArgument, LastReturn } from "./types/chain"
 import type {
 	ConfigurationDefinition,
-	Configuration,
-	Keys,
+	ExtractShape,
+	Transformer,
+	TransformerContext,
 } from "./types/structure"
 
 /** Kanaphig manager */
@@ -45,11 +51,14 @@ export class K<Definition extends ConfigurationDefinition> {
 
 		const flattenedDefinition = flatten(definition) as Record<
 			string,
-			Fn<unknown>
+			Transformer<unknown, unknown>
 		>
 
 		for (const [path, transformer] of Object.entries(flattenedDefinition))
-			this.configuration.set(path, transformer(flattenedMergedSource[path]))
+			this.configuration.set(
+				path,
+				transformer([flattenedMergedSource[path], { key: path }])[0]
+			)
 	}
 
 	/**
@@ -58,9 +67,9 @@ export class K<Definition extends ConfigurationDefinition> {
 	 * @param path - Path to configuration key
 	 * @returns Value
 	 */
-	public get<Path extends Keys<Definition>>(path: Path) {
+	public get<Path extends EndPath<ExtractShape<Definition>>>(path: Path) {
 		return this.configuration.get(path as string) as PathValue<
-			Configuration<Definition>,
+			ExtractShape<Definition>,
 			Path
 		>
 	}
@@ -73,7 +82,7 @@ export class K<Definition extends ConfigurationDefinition> {
 	public all() {
 		return unflatten(
 			Object.fromEntries(this.configuration.entries())
-		) as Configuration<Definition>
+		) as ExtractShape<Definition>
 	}
 
 	/**

@@ -46,7 +46,7 @@ export function flatten<O extends RecursiveObject>(object: O, path = "") {
 		else
 			flattened[`${path}${key}` as keyof Flatten<O>] = value as PathValue<
 				O,
-				Path<O>
+				keyof Flatten<O>
 			>
 
 	return flattened
