@@ -12,7 +12,7 @@ t.afterEach(() => {
 	process.env = { ...OLD_ENV }
 })
 
-t.test("filter and prefix", (t) => {
+t.test("Filter and prefix", (t) => {
 	t.plan(1)
 
 	process.env = {
@@ -26,7 +26,7 @@ t.test("filter and prefix", (t) => {
 	})
 })
 
-t.test("parse keys", (t) => {
+t.test("Parse into nested objects", (t) => {
 	t.plan(1)
 
 	process.env = {
@@ -36,13 +36,18 @@ t.test("parse keys", (t) => {
 	}
 
 	t.same(env(), {
-		"discord.baseUrl": "url",
-		"discord.client.token": "client-token",
-		"discord.client.id": "client-id",
+		discord: {
+			baseUrl: "url",
+
+			client: {
+				token: "client-token",
+				id: "client-id",
+			},
+		},
 	})
 })
 
-t.test("parse values", (t) => {
+t.test("Parse values", (t) => {
 	t.plan(1)
 
 	process.env = {

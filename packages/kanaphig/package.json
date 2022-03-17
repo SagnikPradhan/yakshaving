@@ -1,6 +1,6 @@
 {
 	"name": "kanaphig",
-	"version": "2.0.0-dev.5",
+	"version": "2.0.0-dev.6",
 	"main": "./dist/index.js",
 	"types": "./dist/index.d.ts",
 	"files": [
@@ -10,8 +10,7 @@
 		"watch": "tsc -w",
 		"build": "tsc",
 		"test": "tap --ts ./**/*.test.ts",
-		"test-watch": "yarn test -w",
-		"prepublish": "yarn test && yarn build"
+		"test-watch": "yarn test -w"
 	},
 	"dependencies": {
 		"sundorerr": "workspace:^"

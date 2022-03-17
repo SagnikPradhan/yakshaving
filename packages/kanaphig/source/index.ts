@@ -13,7 +13,6 @@ import type {
 	ConfigurationDefinition,
 	ExtractShape,
 	Transformer,
-	TransformerContext,
 } from "./types/structure"
 
 /** Kanaphig manager */
@@ -45,20 +44,45 @@ export class K<Definition extends ConfigurationDefinition> {
 	}
 
 	private init(sources: RecursiveObject[], definition: Definition) {
-		const flattenedMergedSource = flatten(
-			deepMerge(...sources)
-		) as RecursiveObject
+		const mergedSources = deepMerge(...sources)
+		this.recurisvelyTransform(mergedSources, definition)
+	}
 
-		const flattenedDefinition = flatten(definition) as Record<
-			string,
-			Transformer<unknown, unknown>
-		>
+	private recurisvelyTransform(
+		object: RecursiveObject,
+		definition: RecursiveObject<Transformer>,
+		prefix = ""
+	) {
+		function isObject<V>(value: unknown): value is RecursiveObject<V> {
+			return typeof value === "object" && value !== null
+		}
 
-		for (const [path, transformer] of Object.entries(flattenedDefinition))
-			this.configuration.set(
-				path,
-				transformer([flattenedMergedSource[path], { key: path }])[0]
-			)
+		for (const [currentKey, transformerOrNestedTransformers] of Object.entries(
+			definition
+		)) {
+			const data = object[currentKey]
+			const completeKey = prefix + currentKey
+
+			if (isObject(transformerOrNestedTransformers))
+				if (isObject(data))
+					this.recurisvelyTransform(
+						data,
+						transformerOrNestedTransformers,
+						completeKey + "."
+					)
+				else continue
+			else {
+				const [parsedData] = transformerOrNestedTransformers([
+					data,
+					{ key: completeKey },
+				])
+
+				if (isObject(parsedData))
+					for (const [key, value] of Object.entries(flatten(parsedData)))
+						this.configuration.set(`${completeKey}.${key}`, value)
+				else this.configuration.set(completeKey, parsedData)
+			}
+		}
 	}
 
 	/**
