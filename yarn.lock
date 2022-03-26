@@ -4141,6 +4141,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/lodash@npm:^4":
+  version: 4.14.180
+  resolution: "@types/lodash@npm:4.14.180"
+  checksum: fc42ae3473695cac6e91553f832fef8eb51a31c1c0381cafa81b00dc3efe18e279786bdda77caf0b90a8340ba2ba7aa46ae6541d69870565f775d04c89128bc1
+  languageName: node
+  linkType: hard
+
 "@types/lodash@npm:^4.14.92":
   version: 4.14.172
   resolution: "@types/lodash@npm:4.14.172"
@@ -4421,6 +4428,13 @@ __metadata:
   dependencies:
     "@types/node": "*"
   checksum: ef820469115617fc537f5b050b4f319fb7783f9572722d43c8445eaecb5c8e126555d40e20777ba3161a4a54d61f8df65fb3a85e14089d5d1ef140639818283b
+  languageName: node
+  linkType: hard
+
+"@types/yargs-parser@npm:^21":
+  version: 21.0.0
+  resolution: "@types/yargs-parser@npm:21.0.0"
+  checksum: b2f4c8d12ac18a567440379909127cf2cec393daffb73f246d0a25df36ea983b93b7e9e824251f959e9f928cbc7c1aab6728d0a0ff15d6145f66cec2be67d9a2
   languageName: node
   linkType: hard
 
@@ -12045,16 +12059,20 @@ fsevents@~2.3.2:
   version: 0.0.0-use.local
   resolution: "kanaphig@workspace:packages/kanaphig"
   dependencies:
+    "@types/lodash": ^4
     "@types/node": ^14.14.41
     "@types/tap": ^15.0.6
+    "@types/yargs-parser": ^21
     dotenv: ^16.0.0
     json5: ^2.2.0
     levn: ^0.4.1
+    lodash: ^4.17.21
     sundorerr: "workspace:^"
     tap: ^16.0.0
     ts-node: ^10.7.0
     typescript: latest
     yaml: ^1.10.2
+    yargs-parser: ^21.0.1
     zod: ^3.13.4
   peerDependencies:
     zod: ^3.11.6
@@ -12066,6 +12084,8 @@ fsevents@~2.3.2:
     levn:
       optional: true
     yaml:
+      optional: true
+    yargs-parser:
       optional: true
   peerDependenciesMeta:
     zod:
@@ -19384,6 +19404,13 @@ resolve@^2.0.0-next.3:
     camelcase: ^5.0.0
     decamelize: ^1.2.0
   checksum: 60e8c7d1b85814594d3719300ecad4e6ae3796748b0926137bfec1f3042581b8646d67e83c6fc80a692ef08b8390f21ddcacb9464476c39bbdf52e34961dd4d9
+  languageName: node
+  linkType: hard
+
+"yargs-parser@npm:^21.0.1":
+  version: 21.0.1
+  resolution: "yargs-parser@npm:21.0.1"
+  checksum: c3ea2ed12cad0377ce3096b3f138df8267edf7b1aa7d710cd502fe16af417bafe4443dd71b28158c22fcd1be5dfd0e86319597e47badf42ff83815485887323a
   languageName: node
   linkType: hard
 

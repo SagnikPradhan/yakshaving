@@ -20,11 +20,3 @@ export class KanaphigError extends SundorError {
 		this.details = details
 	}
 }
-
-export function handleError(error: Error, exit = true) {
-	if (!exit) throw error
-	if (error instanceof KanaphigError && error.details.isOperational) throw error
-
-	console.error(error)
-	process.exit(1)
-}
