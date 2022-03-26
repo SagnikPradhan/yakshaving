@@ -1,5 +1,5 @@
 import t from "tap"
-import K from "../../core"
+import { K } from "../../core"
 import { z } from "zod"
 import { zod } from "."
 

@@ -33,7 +33,7 @@ function isObject<V>(value: unknown): value is RecursiveObject<V> {
 	return typeof value === "object" && value !== null
 }
 
-export default class K<UserDefinition extends Definition> {
+export class K<UserDefinition extends Definition> {
 	#configurations: ExtractShape<UserDefinition>[]
 	#definition: UserDefinition
 
@@ -43,7 +43,7 @@ export default class K<UserDefinition extends Definition> {
 		files = [],
 		definition,
 	}: {
-		env?: boolean | string
+		env?: boolean
 		args?: boolean | string | string[]
 		files?: string[]
 		definition: UserDefinition
@@ -131,7 +131,7 @@ export default class K<UserDefinition extends Definition> {
 		files,
 	}: {
 		args: boolean | string | string[]
-		env: boolean | string
+		env: boolean
 		files: string[]
 	}) {
 		const sources: RecursiveObject[] = []
@@ -144,8 +144,7 @@ export default class K<UserDefinition extends Definition> {
 			sources.push(output)
 		}
 
-		if (env)
-			sources.push(this.#readFile(typeof env === "string" ? env : ".env"))
+		if (env) sources.push(this.#readEnv(process.env))
 
 		if (files.length > 0)
 			for (const file of files) sources.push(this.#readFile(file))
@@ -176,16 +175,7 @@ export default class K<UserDefinition extends Definition> {
 
 			case "env":
 				const dotenv: typeof import("dotenv") = require("dotenv")
-				const mapKeys = _.map(
-					_.pipe(_.split("__"), _.map(_.camelCase), _.join("."))
-				)
-
-				return _.pipe(
-					getFile,
-					dotenv.parse,
-					(o) => [mapKeys(_.keys(o)), _.values(o)],
-					_.spread(_.zipObjectDeep)
-				)()
+				return this.#readEnv(dotenv.parse(getFile()))
 
 			default:
 				throw new KanaphigError("KanaphigInvalidConfigFileError", {
@@ -195,5 +185,16 @@ export default class K<UserDefinition extends Definition> {
 					absolutePath,
 				})
 		}
+	}
+
+	#readEnv(object: Record<string, unknown>) {
+		const mapKeys = _.map(
+			_.pipe(_.split("__"), _.map(_.camelCase), _.join("."))
+		)
+
+		return _.pipe(
+			(o) => [mapKeys(_.keys(o)), _.values(o)],
+			_.spread(_.zipObjectDeep)
+		)(object) as RecursiveObject
 	}
 }

@@ -1,10 +1,10 @@
 import t from "tap"
-import K from "."
+import { K } from "."
 
 import { z } from "zod"
 import { zod } from "../plugins/zod"
 
-t.test("K.all + zod + .env source", (t) => {
+t.test("K.all + zod + .env file source", (t) => {
 	t.plan(1)
 
 	const directory = t.testdir({
@@ -17,7 +17,7 @@ t.test("K.all + zod + .env source", (t) => {
 	})
 
 	const configuration = new K({
-		env: `${directory}/.env`,
+		files: [`${directory}/.env`],
 
 		definition: {
 			discord: zod(
@@ -41,6 +41,19 @@ t.test("K.all + zod + .env source", (t) => {
 
 		port: "8080",
 	})
+})
+
+t.test("K.all + zod + .env source", (t) => {
+	t.plan(1)
+
+	Object.assign(process.env, { DISCORD__CLIENT_ID: "client-id" })
+
+	const configuration = new K({
+		env: true,
+		definition: { discord: { clientId: zod(z.string()) } },
+	})
+
+	t.same(configuration.get("discord.clientId"), "client-id")
 })
 
 t.test("K.all + zod + .yaml source", (t) => {

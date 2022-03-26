@@ -1,1 +1,1 @@
-export * from "./core"
+export { K } from "./core"
