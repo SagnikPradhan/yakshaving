@@ -1,14 +1,14 @@
 {
 	"name": "kanaphig",
-	"version": "2.0.0-dev.8",
+	"version": "2.0.0-dev.9",
 	"main": "./dist/index.js",
 	"types": "./dist/index.d.ts",
 	"files": [
 		"./dist"
 	],
 	"scripts": {
-		"watch": "tsc -w",
-		"build": "tsc",
+		"watch": "yarn build -w",
+		"build": "tsc -p tsconfig.build.json",
 		"test": "tap -J --ts --branches 90  ./source/**/*.test.ts",
 		"test-watch": "yarn test -w",
 		"prepublish": "yarn build && yarn test"
